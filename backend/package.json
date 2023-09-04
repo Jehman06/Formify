@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "form-api-backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jehman06/form-api.git"
+  },
+  "author": "Jeremy Lehmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jehman06/form-api/issues"
+  },
+  "homepage": "https://github.com/Jehman06/form-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
