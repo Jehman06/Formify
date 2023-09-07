@@ -6,10 +6,11 @@ import { UserContext } from "../contexts/user.context";
 const ResetPasswordConfirmation = () => {
     const navigate = useNavigate();
 
-    // We are consuming our user-management context
+    // We are using our user-management context
+    // to get the instance of our App.
     const { app } = useContext(UserContext);
 
-    // We are using React's "useState" hook to keep track
+    // We are using useState hook to keep track
     //  of the form values.
     const [form, setForm] = useState({
         password: '',

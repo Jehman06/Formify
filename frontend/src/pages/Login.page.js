@@ -7,12 +7,11 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // We are consuming our user-management context to
+    // We are using our user-management context to
     // get & set the user details here
     const { user, fetchUser, emailPasswordLogin } = useContext(UserContext);
 
-    // We are using React's "useState" hook to keep track
-    //  of the form values.
+    // We are useState to keep track of the form values.
     const [form, setForm] = useState({
         email: "",
         password: ""
@@ -53,7 +52,7 @@ const Login = () => {
         loadUser();
     }, []);
 
-    // This function gets fired when the user clicks on the "Login" button.
+    // This function is called when the user clicks on the "Login" button.
     const onSubmit = async (event) => {
         try {
             // Here we are passing user details to our emailPasswordLogin

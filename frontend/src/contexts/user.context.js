@@ -12,7 +12,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
-    // Function to log in user into our App Service app using their email & password
+    // Function to log in user into the App Service using their email & password
     const emailPasswordLogin = async (email, password) => {
         const credentials = Credentials.emailPassword(email, password);
         const authenticatedUser = await app.logIn(credentials);
@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
         return authenticatedUser;
     };
 
-    // Function to sign up user into our App Service app using their email & password
+    // Function to sign up user into the App Service using their email & password
     const emailPasswordSignup = async (email, password) => {
         try {
             await app.emailPasswordAuth.registerUser(email, password);

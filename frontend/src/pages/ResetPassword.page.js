@@ -7,10 +7,11 @@ const ResetPassword = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
 
-    // We are consuming our user-management context
+    // We are using our user-management context
+    // to get the instance of our App.
     const { app } = useContext(UserContext);
 
-    // We are using React's "useState" hook to keep track
+    // We are using useState to keep track
     //  of the form values.
     const [form, setForm] = useState({
         email: "",
@@ -22,7 +23,7 @@ const ResetPassword = () => {
         setForm({ ...form, [name]: value });
     };
 
-    // This function gets fired when the user clicks on the "Reset Password" button.
+    // This function gets called when the user clicks on the "Reset Password" button.
     const onSubmit = async () => {
         const email = form.email;
         try {
@@ -63,6 +64,5 @@ const ResetPassword = () => {
         </div>
     )
 }
-
 
 export default ResetPassword;
