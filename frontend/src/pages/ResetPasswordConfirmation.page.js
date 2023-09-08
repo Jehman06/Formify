@@ -1,8 +1,11 @@
-import { Button, TextField, Snackbar } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
 
+
+
+// !! THIS STILL NEEDS TO BE IMPLEMENTED !! \\
 const ResetPasswordConfirmation = () => {
     const navigate = useNavigate();
 
@@ -41,20 +44,20 @@ const ResetPasswordConfirmation = () => {
         <form style={{ display: "flex", flexDirection: "column", maxWidth: "300px", margin: "auto" }}>
             <h1>Reset Password</h1>
             <TextField
-                label="Token"
-                type="token"
+                label="Password"
+                type="password"
                 variant="outlined"
-                name="token"
+                name="password"
                 value={form.token}
                 onChange={onFormInputChange}
                 style={{ marginBottom: "1rem" }}
             />
 
             <TextField
-                label="Token ID"
-                type="tokenid"
+                label="Confirm Password"
+                type="password"
                 variant="outlined"
-                name="tokenid"
+                name="password"
                 value={form.tokenId}
                 onChange={onFormInputChange}
                 style={{ marginBottom: "1rem" }}

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserContext } from "../contexts/user.context";
 import axios from 'axios';
 
 export default function HomePage() {
     const [submissions, setSubmissions] = useState([]);
+
+    const { logOutUser } = useContext(UserContext);
 
     useEffect(() => {
         axios
@@ -32,6 +35,7 @@ export default function HomePage() {
     return (
         <div className="container mt-5">
             <h1>Formz</h1>
+            <button onClick={logOutUser}>Log out</button>
 
             <div className="container submission-container">
                 <h2>Submissions:</h2>

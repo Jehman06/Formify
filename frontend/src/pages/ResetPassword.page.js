@@ -28,7 +28,7 @@ const ResetPassword = () => {
         const email = form.email;
         try {
             await app.emailPasswordAuth.sendResetPasswordEmail({ email });
-            navigate('/reset-password-confirm');
+            // TODO: navigate('/Check-Your-Mailbox');
         } catch (error) {
             // Handle error (e.g., email not found)
             setErrorMessage('Error sending reset password email')
