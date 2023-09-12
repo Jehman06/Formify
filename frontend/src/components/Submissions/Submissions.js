@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { UserContext } from "../contexts/user.context";
+import './Submissions.css';
+import { UserContext } from "../../contexts/user.context";
 import axios from 'axios';
 
-export default function HomePage() {
+const Submissions = () => {
     const [submissions, setSubmissions] = useState([]);
 
     const { logOutUser } = useContext(UserContext);
@@ -34,11 +35,8 @@ export default function HomePage() {
 
     return (
         <div className="container mt-5">
-            <h1>Formz</h1>
-            <button onClick={logOutUser}>Log out</button>
-
             <div className="container submission-container">
-                <h2>Submissions:</h2>
+                <h2 className='hello2'>Submissions:</h2>
                 <div className="row submissions">
                     {submissions.map((submission, index) => (
                         <div key={index} className="col-md-6">
@@ -91,3 +89,5 @@ export default function HomePage() {
         </div>
     );
 }
+
+export default Submissions;

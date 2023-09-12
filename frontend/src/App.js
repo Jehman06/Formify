@@ -1,11 +1,14 @@
+import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
-import HomePage from "./pages/Submissions";
+import Submissions from "./components/Submissions/Submissions";
 import Login from "./pages/Login.page";
 import PrivateRoute from "./pages/PrivateRoute.page";
 import Signup from "./pages/Signup.page";
 import ResetPassword from "./pages/ResetPassword.page";
 import ResetPasswordConfirmation from "./pages/ResetPasswordConfirmation.page";
+import Home from './pages/Home.page';
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
@@ -21,7 +24,7 @@ function App() {
           {/* We are protecting our Home Page from unauthenticated */}
           {/* users by wrapping it with PrivateRoute here. */}
           <Route element={<PrivateRoute />}>
-            <Route exact path='/' element={<HomePage />} />
+            <Route exact path='/' element={<Home />} />
           </Route>
         </Routes>
       </UserProvider>
