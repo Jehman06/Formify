@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { App, Credentials } = require('realm-web');
 const jwt = require('jsonwebtoken'); // Added for JWT
 require('dotenv').config();
 

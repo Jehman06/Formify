@@ -6,6 +6,7 @@
 }
 
 .dropdown {
+    padding: 10px;
     background-color: #ebf4fb;
     transition: border 0.2s;
 }

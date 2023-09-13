@@ -9,12 +9,10 @@ import { UserContext } from "../../contexts/user.context";
 import Dropdown from 'react-dropdown';
 import NewForm from "./NewForm";
 import axios from 'axios';
-import ProjectsDropdown from "./Projects";
 
 const Navbar = () => {
-    const { logOutUser } = useContext(UserContext);
+    const { logOutUser, user } = useContext(UserContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isProjectOpen, setIsProjectOpen] = useState(false);
 
     const [projects, setProjects] = useState([]);
     const [value, setValue] = useState('');
@@ -34,8 +32,13 @@ const Navbar = () => {
     }, []);
 
     const fetchProjects = async () => {
+        console.log('Navbar user.id: ', user.id)
         try {
-            const response = await axios.get(`${baseURL}/api/projects`);
+            const response = await axios.get(`${baseURL}/api/projects`, {
+                params: {
+                    userId: user.id,
+                }
+            });
             // Assuming the response.data is an array of project objects
             setProjects(response.data.map(project => ({
                 value: project.id, // Set the value based on your project data

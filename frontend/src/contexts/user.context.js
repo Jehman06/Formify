@@ -17,6 +17,7 @@ export const UserProvider = ({ children }) => {
         const credentials = Credentials.emailPassword(email, password);
         const authenticatedUser = await app.logIn(credentials);
         setUser(authenticatedUser);
+        console.log(authenticatedUser)
         return authenticatedUser;
     };
 
