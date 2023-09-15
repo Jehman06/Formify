@@ -34,7 +34,6 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
 
             if (response.status === 201) {
                 console.log('Project created successfully!');
-                navigate(`/projects/${projectToken}`); // Redirect to the project page
             } else {
                 console.error('Failed to create project');
             }

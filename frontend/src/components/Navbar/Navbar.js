@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import './Navbar.css';
+import { ProjectContext } from "../../contexts/project.context";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -11,13 +12,9 @@ import NewForm from "./NewForm";
 import axios from 'axios';
 
 const Navbar = () => {
-    const { logOutUser, user } = useContext(UserContext);
+    const { logOutUser } = useContext(UserContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const [projects, setProjects] = useState([]);
-    const [value, setValue] = useState('');
-
-    const baseURL = 'http://localhost:3001';
+    const { projects, selectedProject, setSelectedProject, fetchProjects, } = useContext(ProjectContext);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -27,31 +24,18 @@ const Navbar = () => {
         setIsDropdownOpen(false);
     };
 
-    useEffect(() => {
-        fetchProjects();
-    }, []);
-
-    const fetchProjects = async () => {
-        console.log('Navbar user.id: ', user.id)
-        try {
-            const response = await axios.get(`${baseURL}/api/projects`, {
-                params: {
-                    userId: user.id,
-                }
-            });
-            // Assuming the response.data is an array of project objects
-            setProjects(response.data.map(project => ({
-                value: project.id, // Set the value based on your project data
-                label: project.name // Set the label based on your project data
-            })));
-        } catch (error) {
-            console.error('Error fetching projects: ', error);
+    const handleDropdownChange = (selectedOption) => {
+        if (selectedOption) {
+            setSelectedProject(selectedOption.value);
+        } else {
+            setSelectedProject(null);
         }
     }
 
-    const handleDropdownChange = (selectedOption) => {
-        setValue(selectedOption.value); // Update the selected value
-    }
+    useEffect(() => {
+        fetchProjects(); // Fetch the list of projects
+    }, [selectedProject]); // Add selectedProject as a dependency
+
 
     return (
         <div className='navbar-container'>
@@ -60,10 +44,10 @@ const Navbar = () => {
                 <div className='dropdown-container'>
                     <Dropdown
                         options={projects}
-                        value={value}
+                        value={selectedProject ? selectedProject.value : undefined}
                         onChange={handleDropdownChange}
-                        placeholder='Projects'
                         className='dropdown'
+                        placeholder='Projects'
                     />
                 </div>
             </div>
