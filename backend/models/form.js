@@ -24,6 +24,14 @@ const formSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    projectToken: {
+        type: String,
+        required: true,
+    },
+    userId: {
+        type: String,
+        required: true,
+    },
 });
 
 const Form = mongoose.model('Form', formSchema);

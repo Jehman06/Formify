@@ -3,9 +3,23 @@ const Form = require('../models/form');
 
 const router = express.Router();
 
-router.post('/submit', async (req, res) => {
+router.post('/submit/:projectToken/:userId', async (req, res) => {
     try {
-        const { first_name, middle_name, last_name, name, email, phone_number, address, address2, country, city, state, zip, message, } = req.body;
+        const {
+            first_name,
+            middle_name,
+            last_name, name,
+            email,
+            phone_number,
+            address,
+            address2,
+            country,
+            city, state,
+            zip,
+            message,
+        } = req.body;
+
+        const { projectToken, userId } = req.params;
 
         const submission = new Form({
             first_name,
@@ -21,6 +35,8 @@ router.post('/submit', async (req, res) => {
             state,
             zip,
             message,
+            projectToken,
+            userId
         });
 
         await submission.save();
@@ -50,14 +66,21 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/:projectToken', async (req, res) => {
     try {
-        const submissions = await Form.find();
-        res.status(200).json(submissions);
+        const { projectToken } = req.params;
+        const userId = req.query.userId;
+
+        if (!userId || !projectToken) {
+            return res.status(401).json({ error: 'Invalid request' });
+        }
+
+        const forms = await Form.find({ projectToken, userId });
+        res.status(200).json(forms);
     } catch (error) {
-        console.error('Error fetching data: ', error);
-        res.status(500).json({ error: 'Error fetching submissions' })
+        console.error('Error fetching form data: ', error);
+        res.status(500).json({ error: 'Error fetching forms' });
     }
-})
+});
 
 module.exports = router;

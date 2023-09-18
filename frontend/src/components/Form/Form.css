@@ -1,0 +1,97 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+}
+
+.doc-container {
+    background-color: #ebf4fb;
+    color: #000080;
+    padding: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    color: red;
+}
+
+.form-item {
+    color: red;
+    z-index: 999;
+}
+
+.copy-endpoint {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #abd1ee;
+    margin: 10px 0 10px 0;
+}
+
+.copy-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.endpoint-text {
+    padding: 0;
+    margin: 0;
+}
+
+.copy {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.copy-icon {
+    cursor: pointer;
+    transition: font-weight 0.3s, transform 0.3s, color 0.3s;
+}
+
+.copy-icon:hover {
+    font-weight: bold;
+    transform: scale(1.1);
+    color: #d18c32;
+}
+
+.copy-message {
+    position: absolute;
+    top: -48px;
+    right: -20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.code-snippet-container {
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    cursor: pointer;
+    z-index: 1; /* Ensure the button appears on top of the code snippet */
+    color: white;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

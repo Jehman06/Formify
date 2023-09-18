@@ -20,7 +20,7 @@ export const ProjectProvider = ({ children }) => {
     // Fetch projects data and store it in the projects state
     const fetchProjects = async () => {
         try {
-            const response = await axios.get(`${baseURL}/api/projects`, {
+            const response = await axios.get(`${baseURL}/projects`, {
                 params: {
                     userId: user.id
                 }
@@ -37,7 +37,7 @@ export const ProjectProvider = ({ children }) => {
     // Fetch project data and store it in the selectedProject state
     const fetchProject = async () => {
         try {
-            const response = await axios.get(`${baseURL}/api/projects/${selectedProject.token}`, {
+            const response = await axios.get(`${baseURL}/projects/${selectedProject.token}`, {
                 params: {
                     userId: user.id,
                 }

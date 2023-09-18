@@ -30,10 +30,10 @@ mongoose.connect(mongoURI, {
 
 // Import routes for your forms_controller
 const formSubmissionRoutes = require('./Routes/forms_controller.js');
-app.use('/api', formSubmissionRoutes);
+app.use('/forms', formSubmissionRoutes);
 
 const projectSubmissionRoutes = require('./Routes/projects_controller.js');
-app.use('/api/projects', projectSubmissionRoutes);
+app.use('/projects', projectSubmissionRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT} 😎`);

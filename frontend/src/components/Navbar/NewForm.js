@@ -26,7 +26,7 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
             // Generate a unique token for the project
             const projectToken = generateUniqueToken();
 
-            const response = await axios.post(`${baseURL}/api/projects/new`, {
+            const response = await axios.post(`${baseURL}/projects/new`, {
                 name,
                 userId, // Send the userId in the request body
                 token: projectToken,
