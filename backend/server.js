@@ -7,10 +7,14 @@ const jwt = require('jsonwebtoken'); // Added for JWT
 require('dotenv').config();
 
 const app = express();
+
 const PORT = process.env.PORT || 3001;
 
 // Middleware for parsing JSON data in request bodies
 app.use(bodyParser.json());
+
+// Middleware for parsing form data in x-www-form-urlencoded format
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS for all routes or specific origins
 app.use(cors());

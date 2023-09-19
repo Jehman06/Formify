@@ -1,6 +1,26 @@
 const express = require('express');
 const Form = require('../models/form');
 
+// Middleware for handling form submissions
+exports.submitForm = async (req, res) => {
+    try {
+        // Handle form data here
+        const formData = req.body;
+
+        // Perform data processing and database operations
+        // For example, create a new form submission in the database
+        const submission = new Form(formData);
+        await submission.save();
+
+        // Respond with a success message
+        res.status(200).json({ message: 'Form submitted successfully' });
+    } catch (error) {
+        // Handle errors and respond with an error message
+        console.error('Error submitting form:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 const router = express.Router();
 
 router.post('/submit/:projectToken/:userId', async (req, res) => {
@@ -8,13 +28,15 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
         const {
             first_name,
             middle_name,
-            last_name, name,
+            last_name,
+            name,
             email,
             phone_number,
             address,
             address2,
             country,
-            city, state,
+            city,
+            state,
             zip,
             message,
         } = req.body;
@@ -38,6 +60,8 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
             projectToken,
             userId
         });
+
+        console.log('req.body: ', req.body);
 
         await submission.save();
 

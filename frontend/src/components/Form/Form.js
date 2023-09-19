@@ -27,7 +27,7 @@ const Form = () => {
             >
                 <label>
                     Your name:
-                    <input name="name" type="name">
+                    <input name="name" type="text">
                 </label>
 
                 <label>
@@ -98,7 +98,7 @@ const Form = () => {
                             <ContentCopyIcon className='copy-icon' onClick={copyToClipboardEndpoint} />
                         </div>
                     </div>
-                    <p>Place this URL in the action attribute of your form, making sure your form uses <b>method="POST"</b>. Finally, ensure that each input has a name attribute.</p>
+                    <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. You can use all the attributes below, but make sure that all the inputs have a name attribute.</p>
                     <div className="code-snippet-container">
                         <ContentCopyIcon className="copy-button" />
                         <SyntaxHighlighter language="html" style={vscDarkPlus}>
@@ -110,18 +110,18 @@ const Form = () => {
                     <h4>Attributes</h4>
                     <p>The different attributes available to use are:</p>
                     <ul>
+                        <li>name</li>
                         <li>first_name</li>
                         <li>middle_name</li>
                         <li>last_name</li>
-                        <li>name (required)</li>
-                        <li>email (required)</li>
+                        <li><b>email (required)</b></li>
                         <li>address</li>
                         <li>address2</li>
                         <li>country</li>
-                        <li>city</li>
                         <li>state</li>
+                        <li>city</li>
                         <li>zip</li>
-                        <li>message (required)</li>
+                        <li><b>message (required)</b></li>
                     </ul>
                 </div>
                 <br />
@@ -135,6 +135,9 @@ const Form = () => {
                         <div className='form-item' key={index}>
                             <h1>{form.name}</h1>
                             <p>{form.email}</p>
+                            <p>{form.country}</p>
+                            <p>{form.zip}</p>
+                            <p>{form.message}</p>
                         </div>
                     ))}
                 </>
