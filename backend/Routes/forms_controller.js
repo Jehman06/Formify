@@ -62,26 +62,27 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
         });
 
         console.log('req.body: ', req.body);
+        console.log('req.params: ', req.params);
 
         await submission.save();
 
         res.status(201).json({ message: 'Form submitted successfully' });
     } catch (error) {
-        res.status(500).json({ error: 'Error submitting form: ', error })
+        res.status(500).json({ error: 'Error submitting form: ', error });
     }
-})
+});
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:formId', async (req, res) => {
     try {
-        const submissionId = req.params.id;
+        const { formId } = req.params;
 
-        const submission = await Form.findById(submissionId);
+        const form = await Form.findById(formId);
 
-        if (!submission) {
+        if (!form) {
             return res.status(404).json({ error: 'Submission not found' });
         }
 
-        await Form.findByIdAndDelete(submissionId);
+        await Form.findByIdAndDelete(formId);
 
         res.status(200).json({ message: 'Submission deleted successfully' });
     } catch (error) {
@@ -93,7 +94,7 @@ router.delete('/:id', async (req, res) => {
 router.get('/:projectToken', async (req, res) => {
     try {
         const { projectToken } = req.params;
-        const userId = req.query.userId;
+        const userId = req.query.userId; // Access query parameter using req.query
 
         if (!userId || !projectToken) {
             return res.status(401).json({ error: 'Invalid request' });

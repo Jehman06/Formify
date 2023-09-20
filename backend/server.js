@@ -16,6 +16,9 @@ app.use(bodyParser.json());
 // Middleware for parsing form data in x-www-form-urlencoded format
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Middleware to parse json data
+app.use(express.json());
+
 // Enable CORS for all routes or specific origins
 app.use(cors());
 

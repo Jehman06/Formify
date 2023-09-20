@@ -6,8 +6,9 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import axios from 'axios';
 import { ProjectContext } from '../../contexts/project.context';
 import { UserContext } from '../../contexts/user.context';
+import Submissions from './Submissions/Submissions';
 
-import FormNavbar from '../FormNavbar';
+import FormNavbar from './FormNavbar/FormNavbar';
 
 const Form = () => {
     const { selectedProject } = useContext(ProjectContext);
@@ -17,6 +18,7 @@ const Form = () => {
     const [copied, setCopied] = useState(false);
     const [copyMessageVisible, setCopyMessageVisible] = useState(false);
     const [activeLanguage, setActiveLanguage] = useState('html');
+    const [activeView, setActiveView] = useState('documentation');
     const baseURL = 'http://localhost:3001';
     const endpointUrl = `http://localhost:3001/forms/submit/${selectedProject.token}/${user.id}`;
 
@@ -84,63 +86,53 @@ const Form = () => {
     return (
         <div className='form-container' style={{ color: 'white' }}>
             <h1 style={{ color: 'white' }}>{selectedProject ? selectedProject.name : ''}</h1>
-            <FormNavbar />
+            <FormNavbar setActiveView={setActiveView} />
             <br />
-            <div className='doc-container'>
-                <div className='endpoint'>
-                    <h4>Your form's endpoint is:</h4>
-                    <div className='copy-endpoint'>
-                        <div className='copy-container'>
-                            <p className='endpoint-text'>http://localhost:3001/forms/submit/{selectedProject.token}/{user.id}</p>
+            {activeView === 'documentation' && (
+                <div className='doc-container'>
+                    <div className='endpoint'>
+                        <h4>Your form's endpoint is:</h4>
+                        <div className='copy-endpoint'>
+                            <div className='copy-container'>
+                                <p className='endpoint-text'>http://localhost:3001/forms/submit/{selectedProject.token}/{user.id}</p>
+                            </div>
+                            <div className='copy'>
+                                {copied && <div className='copy-message'>Copied</div>}
+                                <ContentCopyIcon className='copy-icon' onClick={copyToClipboardEndpoint} />
+                            </div>
                         </div>
-                        <div className='copy'>
-                            {copied && <div className='copy-message'>Copied</div>}
-                            <ContentCopyIcon className='copy-icon' onClick={copyToClipboardEndpoint} />
+                        <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. All inputs elements should have a name attribute.</p>
+                        <div className="code-snippet-container">
+                            <ContentCopyIcon className="copy-button" />
+                            <SyntaxHighlighter language="html" style={vscDarkPlus}>
+                                {codeSnippet}
+                            </SyntaxHighlighter>
                         </div>
                     </div>
-                    <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. You can use all the attributes below, but make sure that all the inputs have a name attribute.</p>
-                    <div className="code-snippet-container">
-                        <ContentCopyIcon className="copy-button" />
-                        <SyntaxHighlighter language="html" style={vscDarkPlus}>
-                            {codeSnippet}
-                        </SyntaxHighlighter>
+                    <div className='attributes'>
+                        <h4>Attributes</h4>
+                        <p>The different attributes available to use are:</p>
+                        <ul>
+                            <li>name</li>
+                            <li>first_name</li>
+                            <li>middle_name</li>
+                            <li>last_name</li>
+                            <li><b>email (required)</b></li>
+                            <li>address</li>
+                            <li>address2</li>
+                            <li>country</li>
+                            <li>state</li>
+                            <li>city</li>
+                            <li>zip</li>
+                            <li><b>message</b></li>
+                        </ul>
                     </div>
+                    <br />
+                    <br />
                 </div>
-                <div className='attributes'>
-                    <h4>Attributes</h4>
-                    <p>The different attributes available to use are:</p>
-                    <ul>
-                        <li>name</li>
-                        <li>first_name</li>
-                        <li>middle_name</li>
-                        <li>last_name</li>
-                        <li><b>email (required)</b></li>
-                        <li>address</li>
-                        <li>address2</li>
-                        <li>country</li>
-                        <li>state</li>
-                        <li>city</li>
-                        <li>zip</li>
-                        <li><b>message (required)</b></li>
-                    </ul>
-                </div>
-                <br />
-                <br />
-            </div>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <>
-                    {forms.map((form, index) => (
-                        <div className='form-item' key={index}>
-                            <h1>{form.name}</h1>
-                            <p>{form.email}</p>
-                            <p>{form.country}</p>
-                            <p>{form.zip}</p>
-                            <p>{form.message}</p>
-                        </div>
-                    ))}
-                </>
+            )}
+            {activeView === 'submissions' && (
+                <Submissions />
             )}
         </div>
     )

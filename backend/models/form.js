@@ -4,13 +4,8 @@ const formSchema = new mongoose.Schema({
     first_name: String,
     middle_name: String,
     last_name: String,
-    name: {
-        type: String,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
+    name: String,
+    email: String,
     phone_number: String,
     address: String,
     address2: String,

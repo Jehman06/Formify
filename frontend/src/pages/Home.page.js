@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div style={{ backgroundColor: '#004f9e' }}>
             <Navbar />
-            <p style={{ fontSize: '9px', color: 'white', marginLeft: '5px' }}>{user._profile.data.email}</p>
+            <p style={{ fontSize: '10px', color: 'white', marginLeft: '5px' }}>{user._profile.data.email}</p>
             <Form />
         </div>
     )

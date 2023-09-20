@@ -8,17 +8,13 @@
     background-color: #ebf4fb;
     color: #000080;
     padding: 15px;
+    width: 70%;
+    margin-bottom: 50px;
 }
 
 .form {
     display: flex;
     flex-direction: row;
-    color: red;
-}
-
-.form-item {
-    color: red;
-    z-index: 999;
 }
 
 .copy-endpoint {

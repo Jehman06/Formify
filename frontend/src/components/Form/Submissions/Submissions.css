@@ -1,0 +1,12 @@
+.submissions-container {
+    background-color: #ebf4fb;
+    color: #000080;
+    padding: 15px;
+    width: 70%;
+    margin-bottom: 50px;
+}
+
+.form-item {
+    padding: 15px;
+    border-top: 2px solid #000080;
+}

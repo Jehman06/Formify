@@ -1,0 +1,20 @@
+.form-navbar {
+    display: flex;
+    background-color: #333; /* Background color */
+    color: #fff; /* Text color */
+    font-weight: bold; /* Bold text */
+}
+
+.navbar-tab {
+    padding: 10px 20px; /* Padding for tabs */
+    cursor: pointer; /* Cursor pointer on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.navbar-tab:hover {
+    background-color: #d18c32; /* Darker background color on hover */
+}
+
+.active {
+    background-color: #d18c32; /* Active tab background color */
+}
