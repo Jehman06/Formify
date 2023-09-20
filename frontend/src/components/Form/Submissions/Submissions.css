@@ -7,6 +7,50 @@
 }
 
 .form-item {
-    padding: 15px;
-    border-top: 2px solid #000080;
+    position: relative;
+    border-top: 1px solid #000080;
+}
+
+.delete-button {
+    position: absolute;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 3px;
+    top: 1px;
+    right: 1px;
+    z-index: 1;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.delete-button:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.date {
+    margin-top: 5px;
+}
+
+.contact-info p {
+    margin: 0;
+}
+
+.address {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.address p {
+    margin-bottom: 0;
+}
+
+.message {
+    border: 1px solid #000080;
+    margin-bottom: 10px;
+    background-color: #c1ddf3;
+}
+
+.message p {
+    margin: 5px;
 }

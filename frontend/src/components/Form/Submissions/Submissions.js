@@ -64,19 +64,31 @@ const Submissions = () => {
                         .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort forms by date in descending order
                         .map((form, index) => (
                             <div className='form-item' key={index}>
-                                <button onClick={() => deleteForm(form._id)}><DeleteIcon /></button>
-                                <p>{new Date(form.date).toLocaleString()}</p>
-                                <p>{form.name}</p>
-                                <p>{form.first_name} {form.middle_name} {form.last_name}</p>
-                                <p>{form.email}</p>
-                                <p>{form.phone_number}</p>
-                                <p>{form.address}</p>
-                                <p>{form.address2}</p>
-                                <p>{form.country}</p>
-                                <p>{form.city}</p>
-                                <p>{form.state}</p>
-                                <p>{form.zip}</p>
-                                <p>{form.message}</p>
+                                <div className='delete-button' onClick={() => deleteForm(form._id)}>
+                                    <DeleteIcon />
+                                </div>
+
+                                <div className='date'>
+                                    <p>{new Date(form.date).toLocaleString()}</p>
+                                </div>
+
+                                <div className='contact-info'>
+                                    <p><b>{form.name}</b></p>
+                                    <p><b>{form.first_name} {form.middle_name} {form.last_name}</b></p>
+                                    <p>{form.email}</p>
+                                    <p>{form.phone_number}</p>
+                                </div>
+
+                                <div className='address'>
+                                    <p>{form.address}</p>
+                                    <p>{form.address2}</p>
+                                    <p>{form.city}, {form.state} {form.zip}</p>
+                                    <p>{form.country}</p>
+                                </div>
+
+                                <div className='message'>
+                                    <p>{form.message}</p>
+                                </div>
                             </div>
                         ))}
                 </>
