@@ -14,6 +14,7 @@ const Submissions = () => {
     const [forms, setForms] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
 
+    // Fetch the data, specifically for user and project
     const fetchFormData = async () => {
         try {
             if (!selectedProject || !user) {
@@ -30,6 +31,7 @@ const Submissions = () => {
         }
     }
 
+    // Function to delete a form
     const deleteForm = async (formId) => {
         try {
             // Make a DELETE request to the server's endpoint with the correct formId
@@ -37,17 +39,17 @@ const Submissions = () => {
 
             // Check if the response status is 200, indicating success
             if (response.status === 200) {
-                // Update your local state by removing the deleted form
+                // Update local state by removing the deleted form
                 setForms((prevForms) => prevForms.filter((form) => form._id !== formId));
             } else {
                 console.error('Failed to delete form. Server returned status:', response.status);
             }
         } catch (error) {
             console.error('Error deleting form:', error);
-            // Handle any errors that occur during the deletion process.
         }
     }
 
+    // Fetch data whenever selectedProject is selected
     useEffect(() => {
         if (selectedProject) {
             fetchFormData();

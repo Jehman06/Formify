@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './FormNavbar.css';
 
 const FormNavbar = ({ setActiveView }) => {
-    const [activeTab, setActiveTab] = useState('documentation'); // Default active tab
+    const [activeTab, setActiveTab] = useState('documentation'); // Default active tab to docs
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);

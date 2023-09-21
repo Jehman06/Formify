@@ -17,7 +17,7 @@ const Form = () => {
     const [loading, setLoading] = useState(true);
     const [copied, setCopied] = useState(false);
     const [copyMessageVisible, setCopyMessageVisible] = useState(false);
-    const [activeLanguage, setActiveLanguage] = useState('html');
+    const [activeLanguage, setActiveLanguage] = useState('html'); // Potential feature
     const [activeView, setActiveView] = useState('documentation');
     const baseURL = 'http://localhost:3001';
     const endpointUrl = `http://localhost:3001/forms/submit/${selectedProject.token}/${user.id}`;
@@ -47,12 +47,14 @@ const Form = () => {
             </form>
         `
 
+    // I don't think this is necessary
     useEffect(() => {
         if (selectedProject) {
             fetchFormData();
         }
     }, [selectedProject]);
 
+    // This either, will test later
     const fetchFormData = async () => {
         try {
             if (!selectedProject || !user) {
@@ -69,6 +71,7 @@ const Form = () => {
         }
     }
 
+    // Copy the endpoint
     const copyToClipboardEndpoint = async () => {
         try {
             await navigator.clipboard.writeText(endpointUrl);

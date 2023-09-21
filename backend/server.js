@@ -36,10 +36,11 @@ mongoose.connect(mongoURI, {
         console.error('Error connecting to MongoDB: ', error);
     });
 
-// Import routes for your forms_controller
+// Import routes for forms_controller
 const formSubmissionRoutes = require('./Routes/forms_controller.js');
 app.use('/forms', formSubmissionRoutes);
 
+// Import routes for projects_controller
 const projectSubmissionRoutes = require('./Routes/projects_controller.js');
 app.use('/projects', projectSubmissionRoutes);
 
