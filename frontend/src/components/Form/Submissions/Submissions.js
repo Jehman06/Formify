@@ -12,6 +12,7 @@ const Submissions = () => {
 
     const [loading, setLoading] = useState(true);
     const [forms, setForms] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const fetchFormData = async () => {
         try {
@@ -53,16 +54,43 @@ const Submissions = () => {
         }
     }, [selectedProject]);
 
+    // Filter forms based on search query
+    const filteredForms = forms.filter((form) => {
+        const fullName = `${form.first_name} ${form.middle_name} ${form.last_name}`;
+        const lowerCaseSearchQuery = searchQuery.toLowerCase(); // Convert searchQuery to lowercase
+        const searchQueryStr = searchQuery.toString(); // Convert searchQuery to a string
+
+        return (
+            (form.name && form.name.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.email && form.email.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.phone_number && form.phone_number.includes(searchQueryStr)) ||
+            (fullName.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.address && form.address.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.address2 && form.address2.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.city && form.city.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.state && form.state.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            ((form.zip && typeof form.zip === 'number' && form.zip.toString().includes(searchQueryStr))) ||
+            (form.country && form.country.toLowerCase().includes(lowerCaseSearchQuery)) ||
+            (form.message && form.message.toLowerCase().includes(lowerCaseSearchQuery))
+        );
+    });
+
+
     return (
         <div className='submissions-container'>
             <div className='search'>
-                {/* TODO: Search bar */}
+                <input
+                    type="text"
+                    placeholder="Search forms..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
             </div>
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <>
-                    {forms
+                    {filteredForms
                         .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort forms by date in descending order
                         .map((form, index) => (
                             <div className='form-item' key={index}>

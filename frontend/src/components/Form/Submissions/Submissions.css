@@ -3,7 +3,31 @@
     color: #000080;
     padding: 15px;
     width: 60%;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
+}
+
+.search {
+    margin: 20px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.search > input {
+    background-color: transparent;
+    border: 1px solid #000080;
+    transition: border 0.3s, transform 0.3s;
+}
+
+.search > input:hover {
+    border: 2px solid #d18c32;
+    transform: scale(1.05);
+}
+
+.search > input:focus {
+    border: 2px solid #d18c32;
+    transform: scale(1.05);
+    outline: none;
 }
 
 .form-item {
