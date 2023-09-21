@@ -61,8 +61,8 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
             userId
         });
 
-        console.log('req.body: ', req.body);
-        console.log('req.params: ', req.params);
+        console.log('Received body data: ', req.body);
+        console.log('Received params: ', req.params);
 
         await submission.save();
 

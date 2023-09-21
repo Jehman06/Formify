@@ -117,14 +117,14 @@ const Form = () => {
                             <li>first_name</li>
                             <li>middle_name</li>
                             <li>last_name</li>
-                            <li><b>email (required)</b></li>
+                            <li>email</li>
                             <li>address</li>
                             <li>address2</li>
                             <li>country</li>
                             <li>state</li>
                             <li>city</li>
                             <li>zip</li>
-                            <li><b>message</b></li>
+                            <li>message</li>
                         </ul>
                     </div>
                     <br />

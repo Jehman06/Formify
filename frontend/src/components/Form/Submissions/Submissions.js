@@ -23,7 +23,6 @@ const Submissions = () => {
             const response = await axios.get(`${baseURL}/forms/${selectedProject.token}?userId=${user.id}`);
             setForms(response.data);
             setLoading(false); // Stop loading
-            console.log(forms);
         } catch (error) {
             console.error('Error fetching Form data: ', error);
             setLoading(false); // Stop loading on error
@@ -56,6 +55,9 @@ const Submissions = () => {
 
     return (
         <div className='submissions-container'>
+            <div className='search'>
+                {/* TODO: Search bar */}
+            </div>
             {loading ? (
                 <p>Loading...</p>
             ) : (
@@ -82,12 +84,12 @@ const Submissions = () => {
                                 <div className='address'>
                                     <p>{form.address}</p>
                                     <p>{form.address2}</p>
-                                    <p>{form.city}, {form.state} {form.zip}</p>
+                                    <p>{form.city ? form.city + ',' : ''} {form.state} {form.zip}</p>
                                     <p>{form.country}</p>
                                 </div>
 
                                 <div className='message'>
-                                    <p>{form.message}</p>
+                                    <p><b>{form.message}</b></p>
                                 </div>
                             </div>
                         ))}

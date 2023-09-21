@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const bodyParserErrorHandler = require('express-body-parser-error-handler');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { App, Credentials } = require('realm-web');
