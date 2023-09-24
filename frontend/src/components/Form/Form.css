@@ -12,11 +12,6 @@
     margin-bottom: 50px;
 }
 
-.form {
-    display: flex;
-    flex-direction: row;
-}
-
 .copy-endpoint {
     display: flex;
     justify-content: space-between;

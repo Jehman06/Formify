@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bodyParserErrorHandler = require('express-body-parser-error-handler');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { App, Credentials } = require('realm-web');
-const jwt = require('jsonwebtoken'); // Added for JWT
-require('dotenv').config();
+const http = require('http');
+const socketIo = require('socket.io');
+const dotenv = require('dotenv');
+const { initializeWebSocket } = require('./utils/websocket');
+
+dotenv.config();
 
 const app = express();
+const server = http.createServer(app); // Create HTTP server
 
 const PORT = process.env.PORT || 3001;
 
@@ -17,11 +20,14 @@ app.use(bodyParser.json());
 // Middleware for parsing form data in x-www-form-urlencoded format
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Middleware to parse json data
+// Middleware to parse JSON data
 app.use(express.json());
 
 // Enable CORS for all routes or specific origins
 app.use(cors());
+
+// Initialize WebSocket with the HTTP server
+initializeWebSocket(server);
 
 // Connection to MongoDB database
 const mongoURI = process.env.MONGODB_URI;
@@ -44,6 +50,6 @@ app.use('/forms', formSubmissionRoutes);
 const projectSubmissionRoutes = require('./Routes/projects_controller.js');
 app.use('/projects', projectSubmissionRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server running on port ${PORT} 😎`);
 });

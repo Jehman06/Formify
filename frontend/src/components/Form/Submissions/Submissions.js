@@ -77,21 +77,25 @@ const Submissions = () => {
         );
     });
 
-
     return (
         <div className='submissions-container'>
-            <div className='search'>
-                <input
-                    type="text"
-                    placeholder="Search forms..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
-            </div>
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <>
+                    {filteredForms.length === 0 ? (
+                        <p className='no-sub-message'>You don't have any submissions for this project.</p>
+                    ) : (
+                        <div className='search'>
+                            <input
+                                type="text"
+                                placeholder="Search forms..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </div>
+                    )}
+
                     {filteredForms
                         .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort forms by date in descending order
                         .map((form, index) => (
@@ -126,7 +130,8 @@ const Submissions = () => {
                 </>
             )}
         </div>
-    )
+    );
+
 }
 
 export default Submissions;

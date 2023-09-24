@@ -52,7 +52,7 @@ const Form = () => {
         if (selectedProject) {
             fetchFormData();
         }
-    }, [selectedProject]);
+    }, [selectedProject, user.id]);
 
     // This either, will test later
     const fetchFormData = async () => {
@@ -88,54 +88,71 @@ const Form = () => {
 
     return (
         <div className='form-container' style={{ color: 'white' }}>
-            <h1 style={{ color: 'white' }}>{selectedProject ? selectedProject.name : ''}</h1>
-            <FormNavbar setActiveView={setActiveView} />
-            <br />
-            {activeView === 'documentation' && (
-                <div className='doc-container'>
-                    <div className='endpoint'>
-                        <h4>Your form's endpoint is:</h4>
-                        <div className='copy-endpoint'>
-                            <div className='copy-container'>
-                                <p className='endpoint-text'>http://localhost:3001/forms/submit/{selectedProject.token}/{user.id}</p>
-                            </div>
-                            <div className='copy'>
-                                {copied && <div className='copy-message'>Copied</div>}
-                                <ContentCopyIcon className='copy-icon' onClick={copyToClipboardEndpoint} />
-                            </div>
-                        </div>
-                        <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. All inputs elements should have a name attribute.</p>
-                        <div className="code-snippet-container">
-                            <ContentCopyIcon className="copy-button" />
-                            <SyntaxHighlighter language="html" style={vscDarkPlus}>
-                                {codeSnippet}
-                            </SyntaxHighlighter>
-                        </div>
-                    </div>
-                    <div className='attributes'>
-                        <h4>Attributes</h4>
-                        <p>The different attributes available to use are:</p>
-                        <ul>
-                            <li>name</li>
-                            <li>first_name</li>
-                            <li>middle_name</li>
-                            <li>last_name</li>
-                            <li>email</li>
-                            <li>address</li>
-                            <li>address2</li>
-                            <li>country</li>
-                            <li>state</li>
-                            <li>city</li>
-                            <li>zip</li>
-                            <li>message</li>
-                        </ul>
-                    </div>
+            {selectedProject ? (
+                <>
+                    <h1 style={{ color: 'white' }}>{selectedProject ? selectedProject.name : ''}</h1>
+                    <FormNavbar setActiveView={setActiveView} />
                     <br />
-                    <br />
+
+                    {activeView === 'documentation' && (
+                        <div className='doc-container'>
+
+                            <div className='endpoint'>
+                                <h4>Your form's endpoint is:</h4>
+
+                                <div className='copy-endpoint'>
+
+                                    <div className='copy-container'>
+                                        <p className='endpoint-text'>http://localhost:3001/forms/submit/{selectedProject.token}/{user.id}</p>
+                                    </div>
+
+                                    <div className='copy'>
+                                        {copied && <div className='copy-message'>Copied</div>}
+                                        <ContentCopyIcon className='copy-icon' onClick={copyToClipboardEndpoint} />
+                                    </div>
+
+                                </div>
+                                <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. All inputs elements should have a name attribute.</p>
+
+                                <div className="code-snippet-container">
+                                    <ContentCopyIcon className="copy-button" />
+                                    <SyntaxHighlighter language="html" style={vscDarkPlus}>
+                                        {codeSnippet}
+                                    </SyntaxHighlighter>
+                                </div>
+
+                            </div>
+
+                            <div className='attributes'>
+                                <h4>Attributes</h4>
+                                <p>The different attributes available to use are:</p>
+                                <ul>
+                                    <li>name</li>
+                                    <li>first_name</li>
+                                    <li>middle_name</li>
+                                    <li>last_name</li>
+                                    <li>email</li>
+                                    <li>address</li>
+                                    <li>address2</li>
+                                    <li>country</li>
+                                    <li>state</li>
+                                    <li>city</li>
+                                    <li>zip</li>
+                                    <li>message</li>
+                                </ul>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                    )}
+                    {activeView === 'submissions' && (
+                        <Submissions />
+                    )}
+                </>
+            ) : (
+                <div className='no-proj-selected'>
+                    <h1>Select a project or create one.</h1>
                 </div>
-            )}
-            {activeView === 'submissions' && (
-                <Submissions />
             )}
         </div>
     )

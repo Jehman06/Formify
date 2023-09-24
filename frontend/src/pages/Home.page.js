@@ -7,7 +7,7 @@ const Home = () => {
     const { user } = useContext(UserContext);
 
     return (
-        <div style={{ backgroundColor: '#004f9e' }}>
+        <div style={{ backgroundColor: '#004f9e', minHeight: '100vh' }}>
             <Navbar />
             <p style={{ fontSize: '10px', color: 'white', marginLeft: '5px' }}>{user._profile.data.email}</p>
             <Form />

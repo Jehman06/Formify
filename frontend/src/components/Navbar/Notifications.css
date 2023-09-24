@@ -1,0 +1,12 @@
+.notification-popover {
+    position: fixed;
+    top: 50px; /* Adjust the top position as needed */
+    right: 20px; /* Adjust the right position as needed */
+    z-index: 10000; /* Ensure it appears above other content */
+    /* Add additional styling as needed */
+}
+
+.notification-item {
+    color: black;
+    background-color: black;
+}
