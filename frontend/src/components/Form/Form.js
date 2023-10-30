@@ -15,8 +15,10 @@ const Form = () => {
     const { user } = useContext(UserContext);
     const [forms, setForms] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [copied, setCopied] = useState(false);
-    const [copyMessageVisible, setCopyMessageVisible] = useState(false);
+    const [copiedEndpoint, setCopiedEndpoint] = useState(false);
+    const [copyMessageVisibleEndpoint, setCopyMessageVisibleEndpoint] = useState(false);
+    const [copiedSnippet, setCopiedSnippet] = useState(false);
+    const [copyMessageVisibleSnippet, setCopyMessageVisibleSnippet] = useState(false);
     const [activeLanguage, setActiveLanguage] = useState('html'); // Potential feature
     const [activeView, setActiveView] = useState('documentation');
     const baseURL = 'http://localhost:3001';
@@ -75,14 +77,29 @@ const Form = () => {
     const copyToClipboardEndpoint = async () => {
         try {
             await navigator.clipboard.writeText(endpointUrl);
-            setCopied(true);
-            setCopyMessageVisible(true); // Show copy message
+            setCopiedEndpoint(true);
+            setCopyMessageVisibleEndpoint(true); // Show copy message for endpoint
             setTimeout(() => {
-                setCopied(false);
-                setCopyMessageVisible(false); // Hide copy message after 3 seconds
+                setCopiedEndpoint(false);
+                setCopyMessageVisibleEndpoint(false); // Hide copy message after 3 seconds
             }, 3000);
         } catch (error) {
-            console.error('Error copying to clipboard: ', error);
+            console.error('Error copying endpoint to clipboard: ', error);
+        }
+    };
+
+    // Copy the code snippet
+    const copyToClipboardCodeSnippet = async () => {
+        try {
+            await navigator.clipboard.writeText(codeSnippet);
+            setCopiedSnippet(true);
+            setCopyMessageVisibleSnippet(true); // Show copy message for code snippet
+            setTimeout(() => {
+                setCopiedSnippet(false);
+                setCopyMessageVisibleSnippet(false); // Hide copy message after 3 seconds
+            }, 3000);
+        } catch (error) {
+            console.error('Error copying code snippet to clipboard: ', error);
         }
     };
 
@@ -107,7 +124,7 @@ const Form = () => {
                                     </div>
 
                                     <div className='copy'>
-                                        {copied && <div className='copy-message'>Copied</div>}
+                                        {copyMessageVisibleEndpoint && <div className='copy-message'>Copied</div>}
                                         <ContentCopyIcon className='copy-icon' onClick={copyToClipboardEndpoint} />
                                     </div>
 
@@ -115,7 +132,8 @@ const Form = () => {
                                 <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. All inputs elements should have a name attribute.</p>
 
                                 <div className="code-snippet-container">
-                                    <ContentCopyIcon className="copy-button" />
+                                    {copyMessageVisibleSnippet && <div className='copy-snippet'>Copied</div>}
+                                    <ContentCopyIcon className="copy-button" onClick={copyToClipboardCodeSnippet} />
                                     <SyntaxHighlighter language="html" style={vscDarkPlus}>
                                         {codeSnippet}
                                     </SyntaxHighlighter>

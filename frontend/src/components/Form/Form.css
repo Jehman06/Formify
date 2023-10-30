@@ -62,6 +62,17 @@
     animation: fadeInOut 3s ease-in-out;
 }
 
+.copy-snippet {
+    position: absolute;
+    top: -48px;
+    right: -10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    animation: fadeInOut 3s ease-in-out;
+}
+
 .code-snippet-container {
     position: relative;
 }
