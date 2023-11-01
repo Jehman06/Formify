@@ -14,7 +14,7 @@ export const useUserProjects = () => {
 // Provide the context to the app
 export const ProjectProvider = ({ children }) => {
     const [projects, setProjects] = useState([]);
-    const [selectedProject, setSelectedProject] = useState({});
+    const [selectedProject, setSelectedProject] = useState(null);
     const { user } = useContext(UserContext);
 
     // Fetch projects data and store it in the projects state
