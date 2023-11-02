@@ -4,6 +4,7 @@ import { ProjectContext } from "../../../contexts/project.context";
 import { UserContext } from "../../../contexts/user.context";
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+
 const baseURL = 'http://localhost:3001';
 
 const Submissions = () => {
@@ -71,10 +72,10 @@ const Submissions = () => {
             (form.address2 && form.address2.toLowerCase().includes(lowerCaseSearchQuery)) ||
             (form.city && form.city.toLowerCase().includes(lowerCaseSearchQuery)) ||
             (form.state && form.state.toLowerCase().includes(lowerCaseSearchQuery)) ||
-            ((form.zip && typeof form.zip === 'number' && form.zip.toString().includes(searchQueryStr))) ||
-            (form.country && form.country.toLowerCase().includes(lowerCaseSearchQuery)) ||
-            (form.message && form.message.toLowerCase().includes(lowerCaseSearchQuery))
-        );
+            ((form.zip && typeof form.zip === 'number' && form.zip.toString().includes(searchQueryStr)) ||
+                (form.country && form.country.toLowerCase().includes(lowerCaseSearchQuery)) ||
+                (form.message && form.message.toLowerCase().includes(lowerCaseSearchQuery))
+            ))
     });
 
     return (
@@ -83,17 +84,17 @@ const Submissions = () => {
                 <p>Loading...</p>
             ) : (
                 <>
-                    {filteredForms.length === 0 ? (
-                        <p className='no-sub-message'>You don't have any submissions for this project.</p>
-                    ) : (
-                        <div className='search'>
-                            <input
-                                type="text"
-                                placeholder="Search forms..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                        </div>
+                    <div className='search'>
+                        <input
+                            type="text"
+                            placeholder="Search forms..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+
+                    {filteredForms.length === 0 && (
+                        <p className='no-sub-message'>No matching submissions for this search.</p>
                     )}
 
                     {filteredForms
@@ -126,12 +127,12 @@ const Submissions = () => {
                                     <p><b>{form.message}</b></p>
                                 </div>
                             </div>
-                        ))}
+                        ))
+                    }
                 </>
             )}
         </div>
     );
-
 }
 
 export default Submissions;
