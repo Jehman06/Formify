@@ -34,6 +34,8 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
 
             if (response.status === 201) {
                 console.log('Project created successfully!');
+                // Reload the page to reflect changes
+                window.location.reload();
             } else {
                 console.error('Failed to create project');
             }

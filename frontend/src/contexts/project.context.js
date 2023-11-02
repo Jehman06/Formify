@@ -55,7 +55,6 @@ export const ProjectProvider = ({ children }) => {
                 selectedProject,
                 setSelectedProject,
                 fetchProjects,
-                fetchProject,
             }}
         >
             {children}

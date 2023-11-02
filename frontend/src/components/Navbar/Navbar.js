@@ -14,7 +14,7 @@ import io from 'socket.io-client';
 
 const Navbar = () => {
     const { logOutUser } = useContext(UserContext);
-    const { projects, selectedProject, setSelectedProject, fetchProjects, } = useContext(ProjectContext);
+    const { projects, selectedProject, setSelectedProject, fetchProjects } = useContext(ProjectContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
 
@@ -34,8 +34,13 @@ const Navbar = () => {
         }
     }
 
+    const refreshProjects = async () => {
+        // Fetch the updated list of projects
+        await fetchProjects();
+    }
+
     useEffect(() => {
-        fetchProjects(); // Fetch the list of projects
+        fetchProjects(); // Fetch the initial list of projects
     }, [selectedProject]);
 
     const toggleNotifications = () => {
@@ -87,6 +92,7 @@ const Navbar = () => {
                         <NewForm
                             isOpen={isDropdownOpen}
                             onClose={closeDropdown}
+                            onSubmit={refreshProjects} // Call refreshProjects after a new project is created
                         />
                     )}
                 </div>
