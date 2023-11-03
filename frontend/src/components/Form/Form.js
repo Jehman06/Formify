@@ -8,9 +8,10 @@ import { ProjectContext } from '../../contexts/project.context';
 import { UserContext } from '../../contexts/user.context';
 import Submissions from './Submissions/Submissions';
 import FormNavbar from './FormNavbar/FormNavbar';
+import { useLocation } from 'react-router-dom';
 
 const Form = () => {
-    const { selectedProject } = useContext(ProjectContext);
+    const { selectedProject, setSelectedProject } = useContext(ProjectContext);
     const { user } = useContext(UserContext);
     const [forms, setForms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -22,6 +23,11 @@ const Form = () => {
     const [activeView, setActiveView] = useState('documentation'); // Default view is 'documentation'
     const [endpointUrl, setEndpointUrl] = useState('');
     const baseURL = 'http://localhost:3001';
+
+    const location = useLocation();
+    const { search } = location;
+    const searchParams = new URLSearchParams(search);
+    const projectToken = searchParams.get('project');
 
     const codeSnippet = `
         <form
@@ -48,14 +54,26 @@ const Form = () => {
         </form>
     `;
 
-    // Fetch form data if a project is selected
+    // Fetch form data if a project is selected or if a projectToken is present in the URL
     useEffect(() => {
         if (selectedProject) {
             const newEndpointUrl = `http://localhost:3001/forms/submit/${selectedProject.token}/${user.id}`;
             setEndpointUrl(newEndpointUrl);
             fetchFormData();
+        } else if (projectToken) {
+            axios.get(`http://localhost:3001/projects/${projectToken}`)
+                .then((response) => {
+                    const projectData = response.data;
+                    setSelectedProject(projectData);
+                    const newEndpointUrl = `http://localhost:3001/forms/submit/${projectData.token}/${user.id}`;
+                    setEndpointUrl(newEndpointUrl);
+                    fetchFormData();
+                })
+                .catch((error) => {
+                    console.error('Error fetching project data: ', error);
+                });
         }
-    }, [selectedProject, user.id]);
+    }, [selectedProject, user.id, projectToken]);
 
     // Fetch form data for the selected project
     const fetchFormData = async () => {
@@ -139,6 +157,22 @@ const Form = () => {
                                     {codeSnippet}
                                 </SyntaxHighlighter>
                             </div>
+                            <p>There are a number of attributes that you can use:</p>
+                            <ul>
+                                <li>first_name</li>
+                                <li>middle_name</li>
+                                <li>last_name</li>
+                                <li>name</li>
+                                <li>email</li>
+                                <li>phone_number</li>
+                                <li>address</li>
+                                <li>address2</li>
+                                <li>country</li>
+                                <li>city</li>
+                                <li>state</li>
+                                <li>zip</li>
+                                <li>message</li>
+                            </ul>
                         </div>
                     )}
                     {activeView === 'submissions' && (

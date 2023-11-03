@@ -7,7 +7,7 @@ import { generateUniqueToken } from '../../utilities/utilities';
 
 const baseURL = 'http://localhost:3001';
 
-const NewForm = ({ isOpen, onClose, onSubmit }) => {
+const NewForm = ({ isOpen, onClose, onSubmit, setSelectedProject }) => {
     const [form, setForm] = useState('');
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
@@ -34,8 +34,14 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
 
             if (response.status === 201) {
                 console.log('Project created successfully!');
-                // Reload the page to reflect changes
-                window.location.reload();
+                // Change the selectedProject state
+                // setSelectedProject(response.data);
+
+                // // Reload the page to reflect changes
+                onSubmit();
+
+                // Close the dropdown
+                onClose();
             } else {
                 console.error('Failed to create project');
             }
