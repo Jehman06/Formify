@@ -49,7 +49,7 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
         const io = getSocketIoInstance();
         io.emit('newFormSubmission', submission);
 
-        res.status(201).json({ message: 'Form submitted successfully' });
+        res.status(201).json(submission);
     } catch (error) {
         res.status(500).json({ error: 'Error submitting form: ', error });
     }

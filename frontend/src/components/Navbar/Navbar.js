@@ -40,6 +40,8 @@ const Navbar = () => {
     }
 
     useEffect(() => {
+        console.log('SelectedProject in Navbar: ', selectedProject);
+        console.log('setSelectedProject in Navbar: ', setSelectedProject);
         fetchProjects(); // Fetch the initial list of projects
     }, [selectedProject]);
 

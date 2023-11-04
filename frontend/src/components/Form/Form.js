@@ -60,6 +60,7 @@ const Form = () => {
             const newEndpointUrl = `http://localhost:3001/forms/submit/${selectedProject.token}/${user.id}`;
             setEndpointUrl(newEndpointUrl);
             fetchFormData();
+
         } else if (projectToken) {
             axios.get(`http://localhost:3001/projects/${projectToken}`)
                 .then((response) => {
@@ -68,6 +69,7 @@ const Form = () => {
                     const newEndpointUrl = `http://localhost:3001/forms/submit/${projectData.token}/${user.id}`;
                     setEndpointUrl(newEndpointUrl);
                     fetchFormData();
+                    console.log('Selected project in ProjectProvider: ', selectedProject)
                 })
                 .catch((error) => {
                     console.error('Error fetching project data: ', error);

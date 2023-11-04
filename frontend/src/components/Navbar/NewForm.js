@@ -44,6 +44,7 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
 
                 // Update the selected project in your context
                 setSelectedProject(response.data);
+                console.log('response.data in newForm: ', response.data);
             } else {
                 console.error('Failed to create project');
             }

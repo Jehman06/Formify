@@ -18,7 +18,7 @@ router.post('/new', async (req, res) => {
         // Save project
         await project.save();
 
-        res.status(201).json({ message: 'Project created successfully' });
+        res.status(201).json(project);
     } catch (error) {
         res.status(500).json({ error: 'Error creating project: ' + error.message });
     }
