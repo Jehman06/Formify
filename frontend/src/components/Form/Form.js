@@ -49,7 +49,7 @@ const Form = () => {
                 <textarea name="message"></textarea>
             </label>
 
-            <!-- your other form fields here -->
+            <!-- your other form attributes here -->
             <button type="submit">Send</button>
         </form>
     `;
@@ -126,7 +126,7 @@ const Form = () => {
         <div className='form-container' style={{ color: 'white' }}>
             {selectedProject ? (
                 <>
-                    <h1 style={{ color: 'white' }}>{selectedProject.name}</h1>
+                    <h1 style={{ color: 'white' }}>{selectedProject ? selectedProject.name : 'No project selected'}</h1>
                     <FormNavbar setActiveView={setActiveView} />
                     <br />
                     {activeView === 'documentation' && (

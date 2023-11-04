@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './NewForm.css';
 import { UserContext } from "../../contexts/user.context";
+import { ProjectContext } from '../../contexts/project.context'
 import { generateUniqueToken } from '../../utilities/utilities';
 
 const baseURL = 'http://localhost:3001';
 
-const NewForm = ({ isOpen, onClose, onSubmit, setSelectedProject }) => {
+const NewForm = ({ isOpen, onClose, onSubmit }) => {
     const [form, setForm] = useState('');
     const { user } = useContext(UserContext);
+    const { setSelectedProject } = useContext(ProjectContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -34,14 +36,14 @@ const NewForm = ({ isOpen, onClose, onSubmit, setSelectedProject }) => {
 
             if (response.status === 201) {
                 console.log('Project created successfully!');
-                // Change the selectedProject state
-                // setSelectedProject(response.data);
-
-                // // Reload the page to reflect changes
+                // Reload the page to reflect changes in the projects dropdown
                 onSubmit();
 
                 // Close the dropdown
                 onClose();
+
+                // Update the selected project in your context
+                setSelectedProject(response.data);
             } else {
                 console.error('Failed to create project');
             }
