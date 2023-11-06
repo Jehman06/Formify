@@ -7,8 +7,8 @@ import Signup from "./pages/Signup.page";
 import ResetPassword from "./pages/ResetPassword.page";
 import ResetPasswordConfirmation from "./pages/ResetPasswordConfirmation.page";
 import Home from './pages/Home.page';
-import Navbar from "./components/Navbar/Navbar";
 import { ProjectProvider } from './contexts/project.context';
+import { DropdownProvider } from './contexts/dropdown.context';
 
 function App() {
   return (
@@ -16,19 +16,17 @@ function App() {
       {/* We are wrapping our whole app with UserProvider so that */}
       {/* our user is accessible through out the app from any page*/}
       <UserProvider>
-        <ProjectProvider>
-          <Routes>
-            <Route exact path='login' element={<Login />} />
-            <Route exact path='signup' element={<Signup />} />
-            <Route exact path='reset-password' element={<ResetPassword />} />
-            <Route exact path='reset-password-confirm' element={<ResetPasswordConfirmation />} />
-            {/* We are protecting our Home Page from unauthenticated */}
-            {/* users by wrapping it with PrivateRoute here. */}
-            <Route element={<PrivateRoute />}>
-              <Route exact path='/' element={<Home />} />
-            </Route>
-          </Routes>
-        </ProjectProvider>
+        <Routes>
+          <Route exact path='login' element={<Login />} />
+          <Route exact path='signup' element={<Signup />} />
+          <Route exact path='reset-password' element={<ResetPassword />} />
+          <Route exact path='reset-password-confirm' element={<ResetPasswordConfirmation />} />
+          {/* We are protecting our Home Page from unauthenticated */}
+          {/* users by wrapping it with PrivateRoute here. */}
+          <Route element={<PrivateRoute />}>
+            <Route exact path='/' element={<Home />} />
+          </Route>
+        </Routes>
       </UserProvider>
     </BrowserRouter>
   );

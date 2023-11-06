@@ -1,4 +1,4 @@
-.dropdown-container {
+/* .dropdown-container {
     position: relative;
     background-color: #ebf4fb;
     color: #000080;
@@ -10,8 +10,8 @@
     background-color: #ebf4fb;
     transition: border 0.2s;
     position: relative;
-    white-space: nowrap; /* Prevent text from wrapping */
-    min-width: 100px; /* Set a minimum width to prevent it from being too narrow */
+    white-space: nowrap; 
+    min-width: 100px; 
 }
 
 .dropdown:hover {
@@ -21,12 +21,12 @@
 .Dropdown-option {
     transition: color 0.3s, transform 0.3s;
     cursor: pointer;
-}
+} */
 
-.Dropdown-option:hover {
+/* .Dropdown-option:hover {
     color: #d18c32;
     transform: scale(1.1);
-}
+} */
 
 .navbar-container {
     padding: 20px;

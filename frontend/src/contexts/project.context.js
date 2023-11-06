@@ -22,17 +22,18 @@ export const ProjectProvider = ({ children }) => {
         try {
             const response = await axios.get(`${baseURL}/projects`, {
                 params: {
-                    userId: user.id
-                }
-            })
-            setProjects(response.data.map(project => ({
+                    userId: user.id,
+                },
+            });
+            console.log('Fetched projects:', response.data);
+            setProjects(response.data.map((project) => ({
                 value: project,
                 label: project.name,
             })));
         } catch (error) {
             console.error('Error fetching projects', error);
         }
-    }
+    };
 
     // Fetch project data and store it in the selectedProject state
     const fetchProject = async () => {
@@ -48,13 +49,19 @@ export const ProjectProvider = ({ children }) => {
         }
     }
 
+    useEffect(() => {
+        fetchProjects(); // Fetch projects when the component mounts
+    }, []);
+
     return (
         <ProjectContext.Provider
             value={{
                 projects,
+                setProjects,
                 selectedProject,
                 setSelectedProject,
                 fetchProjects,
+                fetchProject,
             }}
         >
             {children}

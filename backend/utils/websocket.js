@@ -13,10 +13,10 @@ function initializeWebSocket(server) {
 
     // WebSocket server logic
     io.on('connection', (socket) => {
-        console.log('Client connected to WebSocket:', socket.id);
+        // console.log('Client connected to WebSocket:', socket.id);
 
         socket.on('disconnect', () => {
-            console.log('Client disconnected from WebSocket:', socket.id);
+            // console.log('Client disconnected from WebSocket:', socket.id);
         });
     });
 

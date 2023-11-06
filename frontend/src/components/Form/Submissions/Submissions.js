@@ -112,8 +112,8 @@ const Submissions = () => {
                                 <div className='contact-info'>
                                     <p><b>{form.name}</b></p>
                                     <p><b>{form.first_name} {form.middle_name} {form.last_name}</b></p>
-                                    <p>{form.email}</p>
-                                    <p>{form.phone_number}</p>
+                                    <p><a href={form.email}>{form.email}</a></p>
+                                    <p><a href={`tel:${form.phone_number}`}>{form.phone_number}</a></p>
                                 </div>
 
                                 <div className='address'>

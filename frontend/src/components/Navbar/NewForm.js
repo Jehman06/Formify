@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './NewForm.css';
 import { UserContext } from "../../contexts/user.context";
@@ -9,13 +8,11 @@ import { generateUniqueToken } from '../../utilities/utilities';
 const baseURL = 'http://localhost:3001';
 
 const NewForm = ({ isOpen, onClose, onSubmit }) => {
-    const [form, setForm] = useState('');
+    const [form, setForm] = useState({ name: '' }); // Initialize form as an object
     const { user } = useContext(UserContext);
     const { setSelectedProject } = useContext(ProjectContext);
-    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleCreateNewProject = async () => {
         try {
             if (!user) {
                 console.error('User not authenticated. Please log in.');
@@ -23,33 +20,34 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
             }
 
             const name = form.name;
-            const userId = user.id
+            const userId = user.id;
 
             // Generate a unique token for the project
             const projectToken = generateUniqueToken();
 
             const response = await axios.post(`${baseURL}/projects/new`, {
                 name,
-                userId, // Send the userId in the request body
+                userId,
                 token: projectToken,
             });
 
             if (response.status === 201) {
                 console.log('Project created successfully!');
-                // Reload the page to reflect changes in the projects dropdown
-                onSubmit();
+
+                // Clear the form input
+                setForm({ name: '' });
 
                 // Close the dropdown
                 onClose();
 
                 // Update the selected project in your context
                 setSelectedProject(response.data);
-                console.log('response.data in newForm: ', response.data);
+
+                // Call the onSubmit function to update the projects state in the Navbar component
+                onSubmit(response.data);
             } else {
                 console.error('Failed to create project');
             }
-
-            console.log('userId: ', userId)
         } catch (error) {
             console.error('Error in creating project: ', error);
         }
@@ -63,9 +61,23 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
 
     return (
         <div className={`dropdownn ${isOpen ? 'open' : ''}`}>
-            <form onSubmit={handleSubmit}>
-                <input className='create-new-form-input' name='name' type="text" placeholder="Project Name" onChange={onFormInputChange} required />
-                <button className='create-new-form-button' type="submit">Create</button>
+            <form>
+                <input
+                    className='create-new-form-input'
+                    name='name'
+                    type="text"
+                    placeholder="Project Name"
+                    value={form.name} // Bind the value of the input to form.name
+                    onChange={onFormInputChange}
+                    required
+                />
+                <button
+                    className='create-new-form-button'
+                    type="button" // Use type="button" to prevent form submission
+                    onClick={handleCreateNewProject}
+                >
+                    Create
+                </button>
             </form>
             <button className='close-new-form-button' onClick={onClose}>Close</button>
         </div>

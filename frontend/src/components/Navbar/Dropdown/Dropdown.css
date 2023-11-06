@@ -1,0 +1,79 @@
+.relative {
+    z-index: 100;
+    background-color: #777;
+}
+
+/* DropdownContent */
+.dropdown-projects-content {
+    position: absolute;
+    z-index: 20;
+    border: 1px solid #ccc; /* Use your desired border color */
+    background-color: #fff;
+    overflow: hidden;
+    margin-top: 1px;
+    overflow-y: auto;
+    box-shadow: none; /* Use your desired box shadow styles */
+    display: none;
+}
+
+/* Add styles for the open state */
+.dropdown-projects-content.active {
+    display: block;
+    background-color: #ccc;
+}
+
+/* DropdownList */
+.dropdown-list {
+    cursor: pointer;
+    border-color: #ccc; /* Use your desired border color */
+    color: #777; /* Use your desired text color */
+}
+
+.dropdown-list-item {
+    /* Define styles for list items here */
+}
+
+.dropdown-list-item:hover {
+    background-color: #f0f0f0; /* Use your desired background color on hover */
+    color: #333; /* Use your desired text color on hover */
+}
+
+/* DropdownItem */
+.dropdown-item {
+    padding: 0.75rem 1.25rem;
+    white-space: nowrap;
+    color: #000; /* Use your desired text color */
+    text-decoration: none;
+}
+
+/* .dropdown-item:hover {
+    text-decoration: none;
+} */
+
+/* DropdownButton */
+.dropdown-button {
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    color: #FFF; /* Use your desired text color */
+    background-color: #333; /* Use your desired background color */
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-button svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 4;
+    stroke: #fff; /* Use your desired stroke color */
+    transition: transform 0.3s ease; /* Add transition for animation */
+}
+
+.dropdown-button:hover {
+    /* Add hover styles here, e.g., background-color, etc. */
+}
+
+.dropdown-button.open svg {
+    transform: rotate(180deg);
+}

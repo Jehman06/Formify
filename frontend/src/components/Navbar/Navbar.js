@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import './Navbar.css';
 import { ProjectContext } from "../../contexts/project.context";
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -6,24 +6,30 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import submitz from '../../assets/submitz.png';
 import { UserContext } from "../../contexts/user.context";
-import Dropdown from 'react-dropdown';
+import Dropdown from "./Dropdown/Dropdown";
+import DropdownButton from "./Dropdown/DropdownButton";
 import NewForm from "./NewForm";
 import axios from 'axios';
 import NotificationPopover from "./Notifications";
 import io from 'socket.io-client';
+import DropdownContent from "./Dropdown/DropdownContent";
+import DropdownList from "./Dropdown/DropdownList";
+import DropdownItem from "./Dropdown/DropdownItem";
 
 const Navbar = () => {
     const { logOutUser } = useContext(UserContext);
-    const { projects, selectedProject, setSelectedProject, fetchProjects } = useContext(ProjectContext);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const { projects, selectedProject, setSelectedProject, fetchProjects, setProjects } = useContext(ProjectContext);
+    const [isNewFormDropdownOpen, setIsNewFormDropdownOpen] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    console.log('isLoading: ', isLoading)
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const toggleNewFormDropdown = () => {
+        setIsNewFormDropdownOpen(!isNewFormDropdownOpen);
     };
 
-    const closeDropdown = () => {
-        setIsDropdownOpen(false);
+    const closeNewFormDropdown = () => {
+        setIsNewFormDropdownOpen(false);
     };
 
     const handleDropdownChange = (selectedOption) => {
@@ -34,17 +40,26 @@ const Navbar = () => {
         }
     }
 
-    const refreshProjects = async () => {
-        // Fetch the updated list of projects
-        await fetchProjects();
-    }
+    const fetchAndSetProjects = async () => {
+        try {
+            const newProjects = await fetchProjects();
+            if (Array.isArray(newProjects)) {
+                setProjects((prevProjects) => [...prevProjects, ...newProjects]);
+            } else {
+                console.error('fetchProjects did not return an array:', newProjects);
+            }
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        console.log('SelectedProject in Navbar: ', selectedProject);
-        console.log('setSelectedProject in Navbar: ', setSelectedProject);
-        fetchProjects(); // Fetch the initial list of projects
-    }, [selectedProject]);
+        fetchAndSetProjects();
+    }, []);
 
+    // Potential notifications feature
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
     }
@@ -53,7 +68,7 @@ const Navbar = () => {
         const socket = io.connect('http://localhost:3001/');
 
         socket.on('connect', () => {
-            console.log('Connected to WebSocket server');
+            // console.log('Connected to WebSocket server');
         });
 
         socket.on('newFormSubmission', (formData) => {
@@ -61,7 +76,7 @@ const Navbar = () => {
         });
 
         socket.on('disconnect', () => {
-            console.log('Disconnected from WebSocket server');
+            // console.log('Disconnected from WebSocket server');
         });
 
         socket.on('connect_error', (error) => {
@@ -73,28 +88,41 @@ const Navbar = () => {
         };
     }, []);
 
+    const updateProjectsState = (newProject) => {
+        setProjects([...projects, newProject]);
+    };
+
     return (
         <div className='navbar-container'>
             <div className='logo'>
                 <img src={submitz} alt='logo' />
                 <div className='dropdown-container'>
-                    <Dropdown
-                        options={projects}
-                        value={selectedProject ? selectedProject.value : undefined}
-                        onChange={handleDropdownChange}
-                        className='dropdown'
-                        placeholder='Projects'
-                    />
+                    <Dropdown>
+                        <DropdownButton>Projects</DropdownButton>
+                        <DropdownContent>
+                            {projects ? (
+                                <DropdownList>
+                                    {projects.map((project, index) => (
+                                        <DropdownItem key={index}>
+                                            {project.label}
+                                        </DropdownItem>
+                                    ))}
+                                </DropdownList>
+                            ) : (
+                                <p>No projects available</p>
+                            )}
+                        </DropdownContent>
+                    </Dropdown>
                 </div>
             </div>
             <div className='nav'>
-                <p onClick={toggleDropdown}><AddCircleOutlineIcon />New Form</p>
+                <p onClick={toggleNewFormDropdown}><AddCircleOutlineIcon />New Form</p>
                 <div className='new-form'>
-                    {isDropdownOpen && (
+                    {isNewFormDropdownOpen && (
                         <NewForm
-                            isOpen={isDropdownOpen}
-                            onClose={closeDropdown}
-                            onSubmit={refreshProjects} // Call refreshProjects after a new project is created
+                            isOpen={isNewFormDropdownOpen}
+                            onClose={closeNewFormDropdown}
+                            onSubmit={fetchAndSetProjects} // Call refreshProjects after a new project is created
                         />
                     )}
                 </div>
