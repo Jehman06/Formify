@@ -9,9 +9,10 @@ import { UserContext } from '../../contexts/user.context';
 import Submissions from './Submissions/Submissions';
 import FormNavbar from './FormNavbar/FormNavbar';
 import { useLocation } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Form = () => {
-    const { selectedProject, setSelectedProject } = useContext(ProjectContext);
+    const { selectedProject, setSelectedProject, projects, setProjects } = useContext(ProjectContext);
     const { user } = useContext(UserContext);
     const [forms, setForms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -124,11 +125,43 @@ const Form = () => {
         }
     };
 
+    const handleDeleteProject = async () => {
+        // Make the user confirm the deletion of the project
+        const shouldDelete = window.confirm('This action will permanently delete the project as well as all the submissions related to it. Do you really want to delete this project?');
+        if (!shouldDelete) {
+            return; // User cancelled the delete operation
+        }
+
+        try {
+            // Make an http request to delete the project
+            const response = await axios.delete(`${baseURL}/projects/${selectedProject.token}`);
+
+            if (response.status === 200) {
+                // Project deleted successfully, update UI accordingly
+                setSelectedProject(null); // Clear the selected project
+
+                // Update the list of projects and remove the deleted project
+                setProjects((projects) => projects.filter((project) => project.value.token !== selectedProject.token));
+            } else {
+                // Handle any error scenario
+                console.error('Failed to delete the project');
+            };
+
+        } catch (error) {
+            // Handle network error and other issues
+            console.error('Error deleting the project: ', error);
+        }
+    };
+
     return (
         <div className='form-container' style={{ color: 'white' }}>
             {selectedProject ? (
                 <>
                     <h1 style={{ color: 'white' }}>{selectedProject ? selectedProject.name : 'No project selected'}</h1>
+                    <div className='delete-project' onClick={handleDeleteProject}>
+                        <DeleteIcon />
+                    </div>
+
                     <FormNavbar setActiveView={setActiveView} />
                     <br />
                     {activeView === 'documentation' && (

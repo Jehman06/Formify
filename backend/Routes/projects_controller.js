@@ -24,6 +24,24 @@ router.post('/new', async (req, res) => {
     }
 });
 
+router.delete('/:token', async (req, res) => {
+    try {
+        const { token } = req.params; // Get the project token from the URL
+
+        // Find the project by its token and delete it
+        const deletedProject = await Project.findOneAndRemove({ token });
+
+        if (!deletedProject) {
+            return res.status(404).json({ error: 'Project not found' });
+        }
+
+        res.status(200).json(deletedProject);
+    } catch (error) {
+        console.error('Error deleting the project: ', error);
+        res.status(500).json({ error: 'Error deleting the project' })
+    }
+});
+
 router.get('/', async (req, res) => {
     try {
         const userId = req.query.userId; // Get the user ID from the request query
