@@ -9,7 +9,6 @@ import { UserContext } from "../../contexts/user.context";
 import Dropdown from "./Dropdown/Dropdown";
 import DropdownButton from "./Dropdown/DropdownButton";
 import NewForm from "./NewForm";
-import axios from 'axios';
 import NotificationPopover from "./Notifications";
 import io from 'socket.io-client';
 import DropdownContent from "./Dropdown/DropdownContent";
@@ -18,11 +17,10 @@ import DropdownItem from "./Dropdown/DropdownItem";
 
 const Navbar = () => {
     const { logOutUser } = useContext(UserContext);
-    const { projects, selectedProject, setSelectedProject, fetchProjects, setProjects } = useContext(ProjectContext);
+    const { projects, fetchProjects, setProjects } = useContext(ProjectContext);
     const [isNewFormDropdownOpen, setIsNewFormDropdownOpen] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    console.log('isLoading: ', isLoading)
 
     const toggleNewFormDropdown = () => {
         setIsNewFormDropdownOpen(!isNewFormDropdownOpen);
@@ -31,14 +29,6 @@ const Navbar = () => {
     const closeNewFormDropdown = () => {
         setIsNewFormDropdownOpen(false);
     };
-
-    const handleDropdownChange = (selectedOption) => {
-        if (selectedOption) {
-            setSelectedProject(selectedOption.value);
-        } else {
-            setSelectedProject(null);
-        }
-    }
 
     const fetchAndSetProjects = async () => {
         try {
@@ -88,10 +78,6 @@ const Navbar = () => {
         };
     }, []);
 
-    const updateProjectsState = (newProject) => {
-        setProjects([...projects, newProject]);
-    };
-
     return (
         <div className='navbar-container'>
             <div className='logo'>
@@ -103,7 +89,7 @@ const Navbar = () => {
                             {projects ? (
                                 <DropdownList>
                                     {projects.map((project, index) => (
-                                        <DropdownItem key={index}>
+                                        <DropdownItem key={index} project={project.value}>
                                             {project.label}
                                         </DropdownItem>
                                     ))}
