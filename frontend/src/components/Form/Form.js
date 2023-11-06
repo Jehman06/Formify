@@ -154,12 +154,16 @@ const Form = () => {
     };
 
     return (
-        <div className='form-container' style={{ color: 'white' }}>
+        <div className='form-container' style={{ color: 'white', display: 'flex', alignItems: 'center' }}>
             {selectedProject ? (
                 <>
-                    <h1 style={{ color: 'white' }}>{selectedProject ? selectedProject.name : 'No project selected'}</h1>
-                    <div className='delete-project' onClick={handleDeleteProject}>
-                        <DeleteIcon />
+                    <div className="title-with-delete">
+                        <h1 style={{ color: 'white' }}>
+                            {selectedProject ? selectedProject.name : 'No project selected'}
+                        </h1>
+                        <div className='delete-project' onClick={handleDeleteProject}>
+                            <DeleteIcon />
+                        </div>
                     </div>
 
                     <FormNavbar setActiveView={setActiveView} />
@@ -186,7 +190,7 @@ const Form = () => {
                                 </div>
                             )}
                             <div className="code-snippet-container">
-                                {copyMessageVisibleSnippet && <div className='copy-message'>Copied</div>}
+                                {copyMessageVisibleSnippet && <div className='copy-snippet'>Copied</div>}
                                 <ContentCopyIcon className="copy-button" onClick={copyToClipboardCodeSnippet} />
                                 <SyntaxHighlighter language="html" style={vscDarkPlus}>
                                     {codeSnippet}

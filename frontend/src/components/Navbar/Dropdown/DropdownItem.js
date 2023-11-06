@@ -7,8 +7,6 @@ function DropdownItem({ children, ...props }) {
 
     const handleClick = () => {
         setSelectedProject(props.project); // Set the selected project when clicked
-        console.log('props.project: ', props.project);
-        console.log('Updated selectedProject inside handleClick: ', selectedProject);
     };
 
     // useEffect(() => {

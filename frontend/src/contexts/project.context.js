@@ -25,7 +25,6 @@ export const ProjectProvider = ({ children }) => {
                     userId: user.id,
                 },
             });
-            console.log('Fetched projects:', response.data);
             setProjects(response.data.map((project) => ({
                 value: project,
                 label: project.name,

@@ -33,11 +33,6 @@ const Navbar = () => {
     const fetchAndSetProjects = async () => {
         try {
             const newProjects = await fetchProjects();
-            if (Array.isArray(newProjects)) {
-                setProjects((prevProjects) => [...prevProjects, ...newProjects]);
-            } else {
-                console.error('fetchProjects did not return an array:', newProjects);
-            }
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching projects:', error);
