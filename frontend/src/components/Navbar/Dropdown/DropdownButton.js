@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { DropdownContext } from '../../../contexts/dropdown.context';
+import '../Navbar.css'
 
 function DropdownButton({ children, ...props }) {
     const { open, setOpen } = useContext(DropdownContext);

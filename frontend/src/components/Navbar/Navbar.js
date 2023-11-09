@@ -5,6 +5,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import submitz from '../../assets/submitz.png';
+import formify from '../../assets/formify.png';
 import { UserContext } from "../../contexts/user.context";
 import Dropdown from "./Dropdown/Dropdown";
 import DropdownButton from "./Dropdown/DropdownButton";
@@ -76,7 +77,7 @@ const Navbar = () => {
     return (
         <div className='navbar-container'>
             <div className='logo'>
-                <img src={submitz} alt='logo' />
+                <img src={formify} alt='logo' />
                 <div className='dropdown-container'>
                     <Dropdown>
                         <DropdownButton>Projects</DropdownButton>
@@ -110,9 +111,9 @@ const Navbar = () => {
                 <p onClick={toggleNotifications}><NotificationsIcon /></p>
                 <p><LogoutIcon onClick={logOutUser} /></p>
             </div>
-            {showNotifications && (
+            {/* {showNotifications && (
                 <NotificationPopover />
-            )}
+            )} */}
         </div>
     )
 }

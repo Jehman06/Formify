@@ -1,5 +1,6 @@
 import React from "react";
 import { DropdownContext } from "../../../contexts/dropdown.context";
+import '../Navbar.css';
 
 function DropdownList({ children, ...props }) {
     const { setOpen } = React.useContext(DropdownContext);
@@ -7,7 +8,7 @@ function DropdownList({ children, ...props }) {
     return (
         <ul
             onClick={() => setOpen(false)}
-            className="divide-y divide-gray-200 text-gray-700 dropdown-list"
+            className="dropdown-list"
             {...props}
         >
             {children}

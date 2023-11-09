@@ -1,54 +1,55 @@
-.relative {
+.dropdown {
     z-index: 100;
-    background-color: #777;
+    background-color: #4c5158;
 }
 
 /* DropdownContent */
 .dropdown-projects-content {
     position: absolute;
     z-index: 20;
-    border: 1px solid #ccc; /* Use your desired border color */
-    background-color: #fff;
+    border: 1px solid #bf8a79; /* Use your desired border color */
     overflow: hidden;
     margin-top: 1px;
     overflow-y: auto;
-    box-shadow: none; /* Use your desired box shadow styles */
+    box-shadow: none;
     display: none;
+    max-width: 200px;
+    min-width: 200px;
 }
 
 /* Add styles for the open state */
 .dropdown-projects-content.active {
     display: block;
-    background-color: #ccc;
+    background-color: #b3b5b8;
 }
 
 /* DropdownList */
 .dropdown-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     cursor: pointer;
-    border-color: #ccc; /* Use your desired border color */
-    color: #777; /* Use your desired text color */
+    border-color: #ccc;
+    color: #777;
 }
 
-.dropdown-list-item {
-    /* Define styles for list items here */
-}
-
-.dropdown-list-item:hover {
-    background-color: #f0f0f0; /* Use your desired background color on hover */
-    color: #333; /* Use your desired text color on hover */
+.dropdown-list {
+    margin: 5px 15px 5px 5px !important;
+    padding: 0 !important;
 }
 
 /* DropdownItem */
 .dropdown-item {
-    padding: 0.75rem 1.25rem;
-    white-space: nowrap;
+    padding: 1rem 1.25rem;
+    margin: 0.2rem;
+    white-space: normal !important; /* Add this line to control text wrapping */
     color: #000; /* Use your desired text color */
     text-decoration: none;
 }
 
-/* .dropdown-item:hover {
-    text-decoration: none;
-} */
+.dropdown-item:hover {
+    font-weight: 600;
+}
 
 /* DropdownButton */
 .dropdown-button {
@@ -59,7 +60,10 @@
     color: #FFF; /* Use your desired text color */
     background-color: #333; /* Use your desired background color */
     display: flex;
-    align-items: center;
+    justify-content: center; /* Horizontally center text */
+    align-items: center; /* Vertically center text */
+    min-width: 200px;
+    max-width: 200px;
 }
 
 .dropdown-button svg {
@@ -76,4 +80,11 @@
 
 .dropdown-button.open svg {
     transform: rotate(180deg);
+}
+
+/* Center the text */
+.center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
