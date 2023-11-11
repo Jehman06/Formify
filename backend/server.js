@@ -3,9 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
-const socketIo = require('socket.io');
 const dotenv = require('dotenv');
-const { initializeWebSocket } = require('./utils/websocket');
 
 dotenv.config();
 
@@ -25,9 +23,6 @@ app.use(express.json());
 
 // Enable CORS for all routes or specific origins
 app.use(cors());
-
-// Initialize WebSocket with the HTTP server
-initializeWebSocket(server);
 
 // Connection to MongoDB database
 const mongoURI = process.env.MONGODB_URI;

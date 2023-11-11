@@ -49,6 +49,7 @@
 
 .dropdown-item:hover {
     font-weight: 600;
+    color: #c89382 !important;
 }
 
 /* DropdownButton */
@@ -64,6 +65,10 @@
     align-items: center; /* Vertically center text */
     min-width: 200px;
     max-width: 200px;
+}
+
+.dropdown-button:hover {
+    background-color: #c89382;
 }
 
 .dropdown-button svg {

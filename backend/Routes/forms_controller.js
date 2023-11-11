@@ -1,6 +1,5 @@
 const express = require('express');
 const Form = require('../models/form');
-const { getSocketIoInstance } = require('../utils/websocket');
 
 const router = express.Router();
 
@@ -44,10 +43,6 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
         });
 
         await submission.save();
-
-        // Emit a WebSocket event to notify clients about the new form submission
-        const io = getSocketIoInstance();
-        io.emit('newFormSubmission', submission);
 
         res.status(201).json(submission);
     } catch (error) {

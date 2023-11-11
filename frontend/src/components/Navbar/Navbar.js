@@ -4,14 +4,11 @@ import { ProjectContext } from "../../contexts/project.context";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import submitz from '../../assets/submitz.png';
 import formify from '../../assets/formify.png';
 import { UserContext } from "../../contexts/user.context";
 import Dropdown from "./Dropdown/Dropdown";
 import DropdownButton from "./Dropdown/DropdownButton";
 import NewForm from "./NewForm";
-import NotificationPopover from "./Notifications";
-import io from 'socket.io-client';
 import DropdownContent from "./Dropdown/DropdownContent";
 import DropdownList from "./Dropdown/DropdownList";
 import DropdownItem from "./Dropdown/DropdownItem";
@@ -50,30 +47,6 @@ const Navbar = () => {
         setShowNotifications(!showNotifications);
     }
 
-    useEffect(() => {
-        const socket = io.connect('http://localhost:3001/');
-
-        socket.on('connect', () => {
-            // console.log('Connected to WebSocket server');
-        });
-
-        socket.on('newFormSubmission', (formData) => {
-            // Handle the new form submission notification here if needed
-        });
-
-        socket.on('disconnect', () => {
-            // console.log('Disconnected from WebSocket server');
-        });
-
-        socket.on('connect_error', (error) => {
-            console.error('WebSocket connection error: ', error);
-        });
-
-        return () => {
-            socket.disconnect();
-        };
-    }, []);
-
     return (
         <div className='navbar-container'>
             <div className='logo'>
@@ -111,9 +84,6 @@ const Navbar = () => {
                 <p onClick={toggleNotifications}><NotificationsIcon /></p>
                 <p><LogoutIcon onClick={logOutUser} /></p>
             </div>
-            {/* {showNotifications && (
-                <NotificationPopover />
-            )} */}
         </div>
     )
 }

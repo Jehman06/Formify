@@ -1,6 +1,6 @@
 .form-navbar {
     display: flex;
-    background-color: #333; /* Background color */
+    background-color: #505050; /* Background color */
     color: #fff; /* Text color */
     font-weight: bold; /* Bold text */
 }
@@ -8,13 +8,15 @@
 .navbar-tab {
     padding: 10px 20px; /* Padding for tabs */
     cursor: pointer; /* Cursor pointer on hover */
-    transition: background-color 0.3s; /* Smooth background color transition */
+    transition: background-color 0.3s, color 0.3s; /* Smooth background color transition */
 }
 
 .navbar-tab:hover {
-    background-color: #d18c32; /* Darker background color on hover */
+    background-color: #c89382; /* Darker background color on hover */
+    color: black;
 }
 
 .active {
-    background-color: #d18c32; /* Active tab background color */
+    background-color: #c89382; /* Active tab background color */
+    color: black;
 }

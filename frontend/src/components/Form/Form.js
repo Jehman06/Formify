@@ -225,7 +225,7 @@ const Form = () => {
             ) : (
                 <div className='no-proj-selected'>
                     {/* No project selected */}
-                    <h1>Select a project or create one.</h1>
+                    <h1>Select or create a project.</h1>
                 </div>
             )}
         </div>
