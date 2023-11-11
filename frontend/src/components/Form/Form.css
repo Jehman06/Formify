@@ -2,24 +2,33 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Center horizontally */
+    background-color: #252934;
+    font-size: 18px;
 }
 
 .doc-container {
     background-color: #ebf4fb;
-    color: #000080;
+    color: black;
     padding: 15px;
     width: 70%;
     margin-bottom: 50px;
+    border: 1px solid black;
+}
+
+.form-endpoint {
+    margin-bottom: 20px;
 }
 
 .copy-endpoint {
     display: flex;
+    color: black;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     border: 1px solid black;
-    background-color: #abd1ee;
+    background-color: #c9c9c9;
     margin: 10px 0 10px 0;
+    margin-bottom: 15px;
 }
 
 .copy-container {
@@ -48,7 +57,7 @@
 .copy-icon:hover {
     font-weight: bold;
     transform: scale(1.1);
-    color: #d18c32;
+    color: white;
 }
 
 .copy-message {
@@ -95,6 +104,7 @@
 .title-with-delete {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .delete-project {
@@ -109,7 +119,7 @@
 
 .delete-project:hover {
     color: red;
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 
 @keyframes fadeInOut {

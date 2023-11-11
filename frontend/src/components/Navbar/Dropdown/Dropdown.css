@@ -20,7 +20,7 @@
 /* Add styles for the open state */
 .dropdown-projects-content.active {
     display: block;
-    background-color: #b3b5b8;
+    background-color: #ebf4fb;
 }
 
 /* DropdownList */

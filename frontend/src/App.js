@@ -7,8 +7,6 @@ import Signup from "./pages/Signup.page";
 import ResetPassword from "./pages/ResetPassword.page";
 import ResetPasswordConfirmation from "./pages/ResetPasswordConfirmation.page";
 import Home from './pages/Home.page';
-import { ProjectProvider } from './contexts/project.context';
-import { DropdownProvider } from './contexts/dropdown.context';
 
 function App() {
   return (

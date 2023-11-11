@@ -172,7 +172,7 @@ const Form = () => {
                         <div className='doc-container'>
                             {selectedProject && (  // Ensure selectedProject is defined
                                 <div className='endpoint'>
-                                    <h4>Your form's endpoint is:</h4>
+                                    <h4 className='form-endpoint'>Your form's endpoint is:</h4>
                                     {selectedProject && (
                                         <div className='copy-endpoint'>
                                             <div className='copy-container'>
@@ -186,7 +186,9 @@ const Form = () => {
                                             </div>
                                         </div>
                                     )}
-                                    <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. All input elements should have a name attribute.</p>
+                                    <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. Each input should have a name attribute.</p>
+                                    <h4>Integrate with your usecase!</h4>
+                                    <p>Check out the code snippet below and customize it to suit your specific requirements:</p>
                                 </div>
                             )}
                             <div className="code-snippet-container">
@@ -212,6 +214,7 @@ const Form = () => {
                                 <li>zip</li>
                                 <li>message</li>
                             </ul>
+                            <p>After completion, navigate to the Submissions tab on this page to view a comprehensive list of all your forms!</p>
                         </div>
                     )}
                     {activeView === 'submissions' && (

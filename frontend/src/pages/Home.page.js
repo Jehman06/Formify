@@ -11,9 +11,9 @@ const Home = () => {
     return (
         <ProjectProvider>
             <DropdownProvider>
-                <div style={{ backgroundColor: '#004f9e', minHeight: '100vh' }}>
+                <div style={{ backgroundColor: '#252934', minHeight: '100vh' }}>
                     <Navbar />
-                    <p style={{ fontSize: '15px', color: 'white', marginLeft: '5px' }}>{user._profile.data.email}</p>
+                    <p style={{ fontSize: '15px', color: '#c89382', marginLeft: '5px', }}>{user._profile.data.email}</p>
                     <Form />
                 </div>
             </DropdownProvider>
