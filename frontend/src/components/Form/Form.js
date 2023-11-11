@@ -20,7 +20,6 @@ const Form = () => {
     const [copyMessageVisibleEndpoint, setCopyMessageVisibleEndpoint] = useState(false);
     const [copiedSnippet, setCopiedSnippet] = useState(false);
     const [copyMessageVisibleSnippet, setCopyMessageVisibleSnippet] = useState(false);
-    const [activeLanguage, setActiveLanguage] = useState('html'); // Potential feature
     const [activeView, setActiveView] = useState('documentation'); // Default view is 'documentation'
     const [endpointUrl, setEndpointUrl] = useState('');
     const baseURL = 'http://localhost:3001';

@@ -3,8 +3,6 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
 
-
-
 // !! THIS STILL NEEDS TO BE IMPLEMENTED !! \\
 const ResetPasswordConfirmation = () => {
     const navigate = useNavigate();
