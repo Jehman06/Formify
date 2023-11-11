@@ -2,6 +2,8 @@ import { Button, TextField } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
+import formify from '../assets/formify.png';
+import './Auth.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -76,32 +78,60 @@ const Login = () => {
         navigate('/reset-password')
     }
 
-    return <form style={{ display: "flex", flexDirection: "column", maxWidth: "300px", margin: "auto" }}>
-        <h1>Login</h1>
-        <TextField
-            label="Email"
-            type="email"
-            variant="outlined"
-            name="email"
-            value={form.email}
-            onChange={onFormInputChange}
-            style={{ marginBottom: "1rem" }}
-        />
-        <TextField
-            label="Password"
-            type="password"
-            variant="outlined"
-            name="password"
-            value={form.password}
-            onChange={onFormInputChange}
-            style={{ marginBottom: "1rem" }}
-        />
-        <Button variant="contained" color="primary" onClick={onSubmit}>
-            Login
-        </Button>
-        <p onClick={resetPasswordNav} style={{ color: 'rgba(var(--bs-link-color-rgb)', textDecoration: 'underline' }}>Forgot your password?</p>
-        <p>Don't have an account? <Link to="/signup">Signup</Link></p>
-    </form>
+    return (
+        <div className='login-container'>
+            <div className='center-container'>
+                <div className='logo-login'>
+                    <img src={formify} alt='logo' />
+                </div>
+                <form className='login-form' style={{ display: "flex", flexDirection: "column", maxWidth: "300px" }}>
+                    <h1>Login</h1>
+                    <TextField
+                        label="Email"
+                        type="email"
+                        variant="outlined"
+                        name="email"
+                        value={form.email}
+                        onChange={onFormInputChange}
+                        InputProps={{
+                            style: { color: 'white' },
+                        }}
+                        InputLabelProps={{
+                            style: { color: 'white' },
+                        }}
+                        color='warning'
+                        style={{ marginBottom: '1rem', backgroundColor: 'transparent' }}
+                    />
+                    <TextField
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        name="password"
+                        value={form.password}
+                        onChange={onFormInputChange}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                onSubmit();
+                            }
+                        }}
+                        InputProps={{
+                            style: { color: 'white' },
+                        }}
+                        InputLabelProps={{
+                            style: { color: 'white' },
+                        }}
+                        color='warning'
+                        style={{ marginBottom: "1rem", backgroundColor: 'transparent' }}
+                    />
+                    <Button variant="contained" color="warning" onClick={onSubmit}>
+                        Login
+                    </Button>
+                    <p onClick={resetPasswordNav} style={{ color: '#ffa726', textDecoration: 'underline' }}>Forgot your password?</p>
+                    <p>Don't have an account? <Link to="/signup" style={{ color: '#ffa726' }}>Signup</Link></p>
+                </form>
+            </div>
+        </div>
+    )
 }
 
 export default Login;
