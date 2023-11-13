@@ -1,5 +1,6 @@
 const express = require('express');
 const Project = require('../models/project');
+const Form = require('../models/form');
 
 const router = express.Router();
 
@@ -26,7 +27,7 @@ router.post('/new', async (req, res) => {
 
 router.delete('/:token', async (req, res) => {
     try {
-        const { token } = req.params; // Get the project token from the URL
+        const { token } = req.params;
 
         // Find the project by its token and delete it
         const deletedProject = await Project.findOneAndRemove({ token });
@@ -34,6 +35,9 @@ router.delete('/:token', async (req, res) => {
         if (!deletedProject) {
             return res.status(404).json({ error: 'Project not found' });
         }
+
+        // Delete associated forms
+        await Form.deleteMany({ projectToken: token });
 
         res.status(200).json(deletedProject);
     } catch (error) {

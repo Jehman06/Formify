@@ -36,6 +36,7 @@ const ResetPasswordConfirmation = () => {
             token: token,
             tokenId: tokenId,
         })
+        navigate('/')
     }
 
     return (

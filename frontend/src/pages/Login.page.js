@@ -85,7 +85,7 @@ const Login = () => {
                     <img src={formify} alt='logo' />
                 </div>
                 <form className='login-form' style={{ display: "flex", flexDirection: "column", maxWidth: "300px" }}>
-                    <h1>Login</h1>
+                    <h1 style={{ marginBottom: '15px' }}>Login</h1>
                     <TextField
                         label="Email"
                         type="email"

@@ -1,7 +1,7 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
+    align-items: center;
     background-color: #252934;
     font-size: 18px;
 }
@@ -131,5 +131,27 @@
     }
     100% {
         opacity: 0;
+    }
+}
+
+/* Add a media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .doc-container {
+        width: 90%; /* Adjust the width for smaller screens */
+    }
+
+    .copy-endpoint {
+        flex-direction: row; /* Switch back to row layout on smaller screens */
+        align-items: center;
+        white-space: normal; /* Allow text to wrap onto multiple lines */
+    }
+
+    .copy-icon {
+        order: -1; /* Move the copy icon to the beginning of the flex container */
+        margin-left: auto; /* Move the copy icon to the right side of the container */
+    }
+
+    .copy-endpoint p {
+        word-break: break-all;
     }
 }
