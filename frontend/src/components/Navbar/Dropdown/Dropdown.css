@@ -7,20 +7,20 @@
 .dropdown-projects-content {
     position: absolute;
     z-index: 20;
-    border: 1px solid #bf8a79; /* Use your desired border color */
+    border: 1px solid #bf8a79;
     overflow: hidden;
     margin-top: 1px;
     overflow-y: auto;
     box-shadow: none;
     display: none;
-    max-width: 200px;
-    min-width: 200px;
+    width: 100%; /* Adjust width to 100% to take the full width */
 }
 
 /* Add styles for the open state */
 .dropdown-projects-content.active {
     display: block;
     background-color: #ebf4fb;
+    width: 100%; /* Adjust width to 100% to take the full width */
 }
 
 /* DropdownList */
@@ -31,6 +31,7 @@
     cursor: pointer;
     border-color: #ccc;
     color: #777;
+    width: 100%; /* Adjust width to 100% */
 }
 
 .dropdown-list {
@@ -92,4 +93,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Media Query for smaller screens */
+@media screen and (max-width: 768px) {
+    .dropdown-projects-content.active {
+        position: relative;
+        width: 100%; /* Adjust width to 100% */
+    }
 }

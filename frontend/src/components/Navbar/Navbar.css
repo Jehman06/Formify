@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #4c5158;
+    position: relative; /* Add relative positioning */
 }
 
 .logo {
@@ -44,16 +45,29 @@
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        padding: 0; /* Set padding to zero */
+        margin-bottom: 60px; /* Set margin to zero */
     }
 
     .nav {
-        margin-top: 15px; /* Adjust the spacing between logo and nav items */
+        flex-direction: row; /* Adjust to display items horizontally */
+        align-items: center; /* Center items vertically */
+        justify-content: space-between; /* Equal space between items */
+        width: 100%;
     }
 
-    .new-form {
-        position: relative;
-        top: 0;
-        right: 0;
-        margin-top: 15px; /* Adjust the spacing between nav items and the form */
+    .nav p {
+        margin: 10px; /* Remove margin to reduce space between items */
+    }
+
+    .project-dropdown {
+        width: 100%; /* Take up the full width of the container */
+        text-align: left; /* Align the text to the left */
+    }
+
+    .dropdown-container {
+        position: absolute;
+        top: 100%; /* Position the dropdown container below the logo */
+        left: 0;
     }
 }

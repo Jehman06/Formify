@@ -78,3 +78,9 @@
 .message p {
     margin: 5px;
 }
+
+@media screen and (max-width: 768px) {
+    .submissions-container {
+        width: 90%;
+    }
+}

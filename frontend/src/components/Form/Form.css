@@ -105,6 +105,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .delete-project {
@@ -135,7 +136,7 @@
 }
 
 /* Add a media query for smaller screens */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1030px) {
     .doc-container {
         width: 90%; /* Adjust the width for smaller screens */
     }

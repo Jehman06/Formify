@@ -13,7 +13,6 @@ const Home = () => {
             <DropdownProvider>
                 <div style={{ backgroundColor: '#252934', minHeight: '100vh' }}>
                     <Navbar />
-                    <p style={{ fontSize: '15px', color: '#c89382', marginLeft: '5px', }}>{user._profile.data.email}</p>
                     <Form />
                 </div>
             </DropdownProvider>

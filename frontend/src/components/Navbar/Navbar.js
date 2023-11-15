@@ -52,7 +52,7 @@ const Navbar = () => {
             <div className='logo'>
                 <img src={formify} alt='logo' />
                 <div className='dropdown-container'>
-                    <Dropdown>
+                    <Dropdown className='project-dropdown'>
                         <DropdownButton>Projects</DropdownButton>
                         <DropdownContent>
                             {projects ? (
@@ -72,15 +72,13 @@ const Navbar = () => {
             </div>
             <div className='nav'>
                 <p onClick={toggleNewFormDropdown}><AddCircleOutlineIcon />New Form</p>
-                <div className='new-form'>
-                    {isNewFormDropdownOpen && (
-                        <NewForm
-                            isOpen={isNewFormDropdownOpen}
-                            onClose={closeNewFormDropdown}
-                            onSubmit={fetchAndSetProjects} // Call refreshProjects after a new project is created
-                        />
-                    )}
-                </div>
+                {isNewFormDropdownOpen && (
+                    <NewForm
+                        isOpen={isNewFormDropdownOpen}
+                        onClose={closeNewFormDropdown}
+                        onSubmit={fetchAndSetProjects} // Call refreshProjects after a new project is created
+                    />
+                )}
                 <p onClick={toggleNotifications}><NotificationsIcon /></p>
                 <p><LogoutIcon onClick={logOutUser} /></p>
             </div>
