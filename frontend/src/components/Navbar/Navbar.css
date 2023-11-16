@@ -43,10 +43,16 @@
 @media screen and (max-width: 768px) {
     .navbar-container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Center items horizontally */
         width: 100%;
-        padding: 0; /* Set padding to zero */
-        margin-bottom: 60px; /* Set margin to zero */
+        padding: 10px; /* Add padding for spacing */
+        margin-bottom: 50px;
+    }
+
+    .logo {
+        width: 90%; /* Make the logo take up the full width */
+        text-align: center; /* Center the text within the logo */
+        margin-bottom: 10px; /* Add some bottom margin to the logo */
     }
 
     .nav {
@@ -57,7 +63,11 @@
     }
 
     .nav p {
-        margin: 10px; /* Remove margin to reduce space between items */
+        margin: 0; /* Remove margin to reduce space between items */
+    }
+
+    .new-form {
+        position: static;
     }
 
     .project-dropdown {
