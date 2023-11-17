@@ -3,7 +3,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd form-api
         - cd frontend
     build:
       commands:
