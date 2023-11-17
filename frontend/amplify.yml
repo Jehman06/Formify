@@ -6,7 +6,8 @@ frontend:
         - npm run build
   artifacts:
     baseDirectory: build
-    files: '**/*'
+    files: 
+    - '**/*'
   cache:
     paths:
       - node_modules/**/*
