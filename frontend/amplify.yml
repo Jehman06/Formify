@@ -3,7 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd form-api/frontend
+        - cd form-api
+        - cd frontend
     build:
       commands:
         - npm ci
