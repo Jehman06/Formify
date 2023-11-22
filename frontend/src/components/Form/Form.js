@@ -22,7 +22,7 @@ const Form = () => {
     const [copyMessageVisibleSnippet, setCopyMessageVisibleSnippet] = useState(false);
     const [activeView, setActiveView] = useState('documentation'); // Default view is 'documentation'
     const [endpointUrl, setEndpointUrl] = useState('');
-    const baseURL = 'http://localhost:3001';
+    const baseURL = 'https://www.formifyapp.com/';
 
     const location = useLocation();
     const { search } = location;
@@ -57,16 +57,16 @@ const Form = () => {
     // Fetch form data if a project is selected or if a projectToken is present in the URL
     useEffect(() => {
         if (selectedProject) {
-            const newEndpointUrl = `http://localhost:3001/forms/submit/${selectedProject.token}/${user.id}`;
+            const newEndpointUrl = `https://www.formifyapp.com/forms/submit/${selectedProject.token}/${user.id}`;
             setEndpointUrl(newEndpointUrl);
             fetchFormData();
 
         } else if (projectToken) {
-            axios.get(`http://localhost:3001/projects/${projectToken}`)
+            axios.get(`https://www.formifyapp.com/projects/${projectToken}`)
                 .then((response) => {
                     const projectData = response.data;
                     setSelectedProject(projectData);
-                    const newEndpointUrl = `http://localhost:3001/forms/submit/${projectData.token}/${user.id}`;
+                    const newEndpointUrl = `https://www.formifyapp.com/forms/submit/${projectData.token}/${user.id}`;
                     setEndpointUrl(newEndpointUrl);
                     fetchFormData();
                     console.log('Selected project in ProjectProvider: ', selectedProject)

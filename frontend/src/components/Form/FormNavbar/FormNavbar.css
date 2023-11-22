@@ -1,22 +1,22 @@
 .form-navbar {
     display: flex;
-    background-color: #505050; /* Background color */
-    color: #fff; /* Text color */
-    font-weight: bold; /* Bold text */
+    background-color: #505050;
+    color: #fff;
+    font-weight: bold;
 }
 
 .navbar-tab {
-    padding: 10px 20px; /* Padding for tabs */
-    cursor: pointer; /* Cursor pointer on hover */
-    transition: background-color 0.3s, color 0.3s; /* Smooth background color transition */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar-tab:hover {
-    background-color: #c89382; /* Darker background color on hover */
+    background-color: #c89382;
     color: black;
 }
 
 .active {
-    background-color: #c89382; /* Active tab background color */
+    background-color: #c89382;
     color: black;
 }

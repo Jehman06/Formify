@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/user.context";
 import { ProjectContext } from '../../contexts/project.context'
 import { generateUniqueToken } from '../../utilities/utilities';
 
-const baseURL = 'http://localhost:3001';
+const baseURL = 'https://www.formifyapp.com';
 
 const NewForm = ({ isOpen, onClose, onSubmit }) => {
     const [form, setForm] = useState({ name: '' }); // Initialize form as an object
