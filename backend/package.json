@@ -26,6 +26,7 @@
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
     "nodemon": "^3.0.1",
-    "realm-web": "^2.0.0"
+    "realm-web": "^2.0.0",
+    "vercel": "^32.5.6"
   }
 }
