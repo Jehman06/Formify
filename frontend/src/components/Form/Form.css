@@ -1,0 +1,158 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #252934;
+    font-size: 18px;
+}
+
+.doc-container {
+    background-color: #ebf4fb;
+    color: black;
+    padding: 15px;
+    width: 70%;
+    margin-bottom: 50px;
+    border: 1px solid black;
+}
+
+.form-endpoint {
+    margin-bottom: 20px;
+}
+
+.copy-endpoint {
+    display: flex;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #e0c3b9;
+    margin: 10px 0 10px 0;
+    margin-bottom: 15px;
+}
+
+.copy-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.endpoint-text {
+    padding: 0;
+    margin: 0;
+}
+
+.copy {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.copy-icon {
+    cursor: pointer;
+    transition: font-weight 0.3s, transform 0.3s, color 0.3s;
+}
+
+.copy-icon:hover {
+    font-weight: bold;
+    transform: scale(1.1);
+    color: white;
+}
+
+.copy-message {
+    position: absolute;
+    top: -48px;
+    right: -20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.copy-snippet {
+    position: absolute;
+    top: -38px;
+    right: -10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.code-snippet-container {
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    cursor: pointer;
+    z-index: 1; /* Ensure the button appears on top of the code snippet */
+    color: white;
+}
+
+.copy-button:hover {
+    font-weight: bold;
+    transform: scale(1.1);
+    color: #c89382;
+}
+
+.title-with-delete {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.delete-project {
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 3px;
+    margin-left: 10px; /* Adjust the margin as needed */
+    z-index: 1;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.delete-project:hover {
+    color: red;
+    transform: scale(1.5);
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Add a media query for smaller screens */
+@media screen and (max-width: 1030px) {
+    .doc-container {
+        width: 90%; /* Adjust the width for smaller screens */
+    }
+
+    .copy-endpoint {
+        flex-direction: row; /* Switch back to row layout on smaller screens */
+        align-items: center;
+        white-space: normal; /* Allow text to wrap onto multiple lines */
+    }
+
+    .copy-icon {
+        order: -1; /* Move the copy icon to the beginning of the flex container */
+        margin-left: auto; /* Move the copy icon to the right side of the container */
+    }
+
+    .copy-endpoint p {
+        word-break: break-all;
+    }
+}

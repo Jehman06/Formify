@@ -1,0 +1,46 @@
+body {
+    background-color: #4c5158 !important;
+    color: white !important;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the container takes the full height of the viewport */
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    margin: auto;
+}
+
+.logo-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.logo img {
+    height: auto;
+    min-width: 300px;
+    max-width: 100%;
+}
+
+/* Target autofill input */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill::first-line,
+input:-webkit-autofill:hover::first-line {
+    /* Set styles for autofill */
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    color: white !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}

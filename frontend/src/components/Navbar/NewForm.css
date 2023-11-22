@@ -1,0 +1,44 @@
+.dropdownn {
+    padding: 10px;
+    background-color: #ebf4fb;
+}
+
+.create-new-form-button, .close-new-form-button, .create-new-form-input {
+    background-color: transparent;
+    border: 1px solid #c89382;
+    color: black;
+}
+
+.create-new-form-input:focus {
+    border: 3px solid black;
+}
+
+.create-new-form-button {
+    margin-left: 5px;
+}
+
+.close-new-form-button {
+    margin-top: 5px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: black;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: black;
+    opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: black;
+    opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: black;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: black; 
+}
+
+::placeholder { /* Most modern browsers support this now. */
+    color: black;
+}
