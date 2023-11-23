@@ -4,7 +4,7 @@ import { UserContext } from "./user.context";
 
 export const ProjectContext = createContext();
 
-const baseURL = 'https://api.formifyapp.com';
+const baseURL = 'http://api.formifyapp.com';
 
 // Custom hook to use the projects context
 export const useUserProjects = () => {

@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Form = () => {
-    const { selectedProject, setSelectedProject, projects, setProjects } = useContext(ProjectContext);
+    const { selectedProject, setSelectedProject, setProjects } = useContext(ProjectContext);
     const { user } = useContext(UserContext);
     const [forms, setForms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ const Form = () => {
     const [copyMessageVisibleSnippet, setCopyMessageVisibleSnippet] = useState(false);
     const [activeView, setActiveView] = useState('documentation'); // Default view is 'documentation'
     const [endpointUrl, setEndpointUrl] = useState('');
-    const baseURL = 'https://api.formifyapp.com';
+    const baseURL = 'http://api.formifyapp.com';
 
     const location = useLocation();
     const { search } = location;
@@ -57,16 +57,16 @@ const Form = () => {
     // Fetch form data if a project is selected or if a projectToken is present in the URL
     useEffect(() => {
         if (selectedProject) {
-            const newEndpointUrl = `https://api.formifyapp.com/forms/submit/${selectedProject.token}/${user.id}`;
+            const newEndpointUrl = `http://api.formifyapp.com/forms/submit/${selectedProject.token}/${user.id}`;
             setEndpointUrl(newEndpointUrl);
             fetchFormData();
 
         } else if (projectToken) {
-            axios.get(`https://api.formifyapp.com/projects/${projectToken}`)
+            axios.get(`http://api.formifyapp.com/projects/${projectToken}`)
                 .then((response) => {
                     const projectData = response.data;
                     setSelectedProject(projectData);
-                    const newEndpointUrl = `https://api.formifyapp.com/forms/submit/${projectData.token}/${user.id}`;
+                    const newEndpointUrl = `http://api.formifyapp.com/forms/submit/${projectData.token}/${user.id}`;
                     setEndpointUrl(newEndpointUrl);
                     fetchFormData();
                     console.log('Selected project in ProjectProvider: ', selectedProject)
