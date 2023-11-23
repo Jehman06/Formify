@@ -5,7 +5,7 @@ import { UserContext } from "../../../contexts/user.context";
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 
-const baseURL = 'https://formifyapp-8ce7dd1aa796.herokuapp.com';
+const baseURL = 'https://api.formifyapp.com';
 
 const Submissions = () => {
     const { selectedProject } = useContext(ProjectContext);
@@ -36,7 +36,7 @@ const Submissions = () => {
     const deleteForm = async (formId) => {
         try {
             // Make a DELETE request to the server's endpoint with the correct formId
-            const response = await axios.delete(`https://formifyapp-8ce7dd1aa796.herokuapp.com/forms/${formId}`);
+            const response = await axios.delete(`https://api.formifyapp.com/forms/${formId}`);
 
             // Check if the response status is 200, indicating success
             if (response.status === 200) {
