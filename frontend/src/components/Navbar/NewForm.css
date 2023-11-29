@@ -1,6 +1,10 @@
 .dropdownn {
+    position: fixed;
+    top: 8%; /* Adjust this value based on the height of your Navbar */
+    right: 0.1%;
     padding: 10px;
     background-color: #ebf4fb;
+    z-index: 1; /* Make sure the dropdown appears above other content */
 }
 
 .create-new-form-button, .close-new-form-button, .create-new-form-input {
