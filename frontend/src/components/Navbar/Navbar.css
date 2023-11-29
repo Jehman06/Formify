@@ -30,54 +30,61 @@
     cursor: pointer;
 }
 
-.new-form {
-    position: absolute;
-    right: 10px;
-    top: 70px;
-    height: 100px;
-    padding: 20px;
-    font-size: 10pt;
-}
-
 /* Media Query for smaller screens */
 @media screen and (max-width: 768px) {
     .navbar-container {
+        position: relative;
         flex-direction: column;
-        align-items: center; /* Center items horizontally */
+        align-items: center;
         width: 100%;
-        padding: 10px; /* Add padding for spacing */
+        padding: 10px;
         margin-bottom: 50px;
     }
 
     .logo {
-        width: 90%; /* Make the logo take up the full width */
-        text-align: center; /* Center the text within the logo */
-        margin-bottom: 10px; /* Add some bottom margin to the logo */
+        width: 90%;
+        text-align: center;
+        margin-bottom: 10px;
     }
 
     .nav {
-        flex-direction: row; /* Adjust to display items horizontally */
-        align-items: center; /* Center items vertically */
-        justify-content: space-between; /* Equal space between items */
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
     }
 
     .nav p {
-        margin: 0; /* Remove margin to reduce space between items */
+        margin: 0;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: end;
     }
 
     .new-form {
-        position: static;
+        display: none;
+    }
+
+    .nav-icons {
+        display: flex;
+        align-items: center;
+    }
+
+    .notifications,
+    .logout {
+        margin-left: auto; /* Push these icons to the right */
     }
 
     .project-dropdown {
-        width: 100%; /* Take up the full width of the container */
-        text-align: left; /* Align the text to the left */
+        width: 100%;
+        text-align: left;
     }
 
     .dropdown-container {
         position: absolute;
-        top: 100%; /* Position the dropdown container below the logo */
+        top: 60%;
         left: 0;
     }
 }
