@@ -15,15 +15,17 @@ import DropdownItem from "./Dropdown/DropdownItem";
 
 const Navbar = () => {
     const { logOutUser } = useContext(UserContext);
-    const { projects, fetchProjects, setProjects } = useContext(ProjectContext);
+    const { projects, fetchProjects } = useContext(ProjectContext);
     const [isNewFormDropdownOpen, setIsNewFormDropdownOpen] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Open/close new form dropdown
     const toggleNewFormDropdown = () => {
         setIsNewFormDropdownOpen(!isNewFormDropdownOpen);
     };
 
+    // Close new form dropdown with close button
     const closeNewFormDropdown = () => {
         setIsNewFormDropdownOpen(false);
     };
@@ -38,6 +40,7 @@ const Navbar = () => {
         }
     };
 
+    // Fetch projects when the component mounts
     useEffect(() => {
         fetchAndSetProjects();
     }, []);

@@ -20,9 +20,9 @@ const Form = () => {
     const [copyMessageVisibleEndpoint, setCopyMessageVisibleEndpoint] = useState(false);
     const [copiedSnippet, setCopiedSnippet] = useState(false);
     const [copyMessageVisibleSnippet, setCopyMessageVisibleSnippet] = useState(false);
-    const [activeView, setActiveView] = useState('documentation'); // Default view is 'documentation'
+    const [activeView, setActiveView] = useState('documentation');
     const [endpointUrl, setEndpointUrl] = useState('');
-    const baseURL = 'https://formifyapp-8ce7dd1aa796.herokuapp.com'; // https://formifyapp-8ce7dd1aa796.herokuapp.com
+    const baseURL = 'https://formifyapp-8ce7dd1aa796.herokuapp.com';
 
     const location = useLocation();
     const { search } = location;
@@ -169,7 +169,7 @@ const Form = () => {
                     <br />
                     {activeView === 'documentation' && (
                         <div className='doc-container'>
-                            {selectedProject && (  // Ensure selectedProject is defined
+                            {selectedProject && (
                                 <div className='endpoint'>
                                     <h4 className='form-endpoint'>Your form's endpoint is:</h4>
                                     {selectedProject && (
@@ -186,7 +186,7 @@ const Form = () => {
                                         </div>
                                     )}
                                     <p>Place this URL in the action attribute of your form, and make sure to use <b>method="POST"</b>. Each input should have a name attribute.</p>
-                                    <h4>Integrate with your usecase!</h4>
+                                    <h4>Integrate with your use case!</h4>
                                     <p>Check out the code snippet below and customize it to suit your specific requirements:</p>
                                 </div>
                             )}

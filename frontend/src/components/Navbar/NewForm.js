@@ -23,7 +23,7 @@ const NewForm = ({ isOpen, onClose, onSubmit }) => {
             const userId = user.id;
 
             // Generate a unique token for the project
-            const projectToken = generateUniqueToken();
+            const projectToken = generateUniqueToken(); // generateUniqueToken function is in frontend/src/utilities
 
             const response = await axios.post(`${baseURL}/projects/new`, {
                 name,

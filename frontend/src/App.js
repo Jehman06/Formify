@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* We are wrapping our whole app with UserProvider so that */}
-      {/* our user is accessible through out the app from any page*/}
+      {/* our user is accessible throughout the app from any page*/}
       <UserProvider>
         <Routes>
           <Route exact path='login' element={<Login />} />
