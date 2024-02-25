@@ -74,7 +74,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='nav'>
-                <p className='new-form' onClick={toggleNewFormDropdown}><AddCircleOutlineIcon />New Form</p>
+                <p className='new-form' onClick={toggleNewFormDropdown}><AddCircleOutlineIcon />New Project</p>
                 {isNewFormDropdownOpen && (
                     <NewForm
                         isOpen={isNewFormDropdownOpen}
