@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
 
-// !! THIS STILL NEEDS TO BE IMPLEMENTED !! \\
+// !! THIS STILL NEEDS TO BE IMPLEMENTED !!
 const ResetPasswordConfirmation = () => {
     const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ const ResetPasswordConfirmation = () => {
     const { app } = useContext(UserContext);
 
     // We are using useState hook to keep track
-    //  of the form values.
+    // of the form values.
     const [form, setForm] = useState({
         password: '',
         token: '',

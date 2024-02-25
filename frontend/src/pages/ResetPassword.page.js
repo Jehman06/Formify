@@ -57,7 +57,7 @@ const ResetPassword = () => {
             </form>
             <Snackbar
                 open={errorMessage !== null}
-                autoHideDuration={6000} // Adjust as needed
+                autoHideDuration={6000}
                 onClose={() => setErrorMessage(null)}
                 message={errorMessage}
             />

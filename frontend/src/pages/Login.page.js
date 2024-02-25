@@ -48,7 +48,7 @@ const Login = () => {
     }
 
     // This useEffect will run only once when the component is mounted.
-    // Hence this is helping us in verifying whether the user is already logged in
+    // This is helping us in verifying whether the user is already logged in
     // or not.
     useEffect(() => {
         loadUser();
@@ -57,9 +57,9 @@ const Login = () => {
     // This function is called when the user clicks on the "Login" button.
     const onSubmit = async (event) => {
         try {
-            // Here we are passing user details to our emailPasswordLogin
+            // Passing user details to our emailPasswordLogin
             // function that we imported from our realm/authentication.js
-            // to validate the user credentials and log in the user into our App.
+            // to validate the user credentials and log in the user into the app.
             const user = await emailPasswordLogin(form.email, form.password);
             if (user) {
                 redirectNow();

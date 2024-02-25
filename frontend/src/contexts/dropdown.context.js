@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
 
-// Create the context
 const DropdownContext = createContext();
 
 // Create a provider component to manage the state and actions

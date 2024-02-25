@@ -46,9 +46,9 @@ const Navbar = () => {
     }, []);
 
     // Potential notifications feature
-    const toggleNotifications = () => {
-        setShowNotifications(!showNotifications);
-    }
+    // const toggleNotifications = () => {
+    //     setShowNotifications(!showNotifications);
+    // }
 
     return (
         <div className='navbar-container'>
