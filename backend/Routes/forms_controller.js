@@ -3,6 +3,7 @@ const Form = require('../models/form');
 
 const router = express.Router();
 
+// Route to send a new form
 router.post('/submit/:projectToken/:userId', async (req, res) => {
     try {
         const {
@@ -50,6 +51,7 @@ router.post('/submit/:projectToken/:userId', async (req, res) => {
     }
 });
 
+// Delete a form
 router.delete('/:formId', async (req, res) => {
     try {
         const { formId } = req.params;
@@ -72,6 +74,7 @@ router.delete('/:formId', async (req, res) => {
     }
 });
 
+// Get all the forms for the project
 router.get('/:projectToken', async (req, res) => {
     try {
         const { projectToken } = req.params;

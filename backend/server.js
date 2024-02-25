@@ -22,7 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Enable CORS for all routes or specific origins
-app.use(cors());
+app.use(cors({
+    origin: 'https://www.formifyapp.com',
+}));
 
 // Connection to MongoDB database
 const mongoURI = process.env.MONGODB_URI;
@@ -36,6 +38,11 @@ mongoose.connect(mongoURI, {
     .catch((error) => {
         console.error('Error connecting to MongoDB: ', error);
     });
+
+// Root route
+app.get('/', (req, res) => {
+    res.send('Backend is working properly.')
+})
 
 // Import routes for forms_controller
 const formSubmissionRoutes = require('./Routes/forms_controller.js');

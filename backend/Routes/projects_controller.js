@@ -4,6 +4,7 @@ const Form = require('../models/form');
 
 const router = express.Router();
 
+// Create a new project
 router.post('/new', async (req, res) => {
     try {
         const { name, userId } = req.body; // Get the user ID from the request body
@@ -25,6 +26,7 @@ router.post('/new', async (req, res) => {
     }
 });
 
+// Delete a project
 router.delete('/:token', async (req, res) => {
     try {
         const { token } = req.params;
@@ -46,11 +48,12 @@ router.delete('/:token', async (req, res) => {
     }
 });
 
+// Display the projects in the dropdown
 router.get('/', async (req, res) => {
     try {
         const userId = req.query.userId; // Get the user ID from the request query
 
-        // If user is unauthenticated somehow
+        // If user is unauthenticated
         if (!userId) {
             return res.status(401).json({ error: 'Please authenticate' });
         }
@@ -64,6 +67,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Generate the token
 const generateUniqueToken = () => {
     // Generate a random token using a combination of characters
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
