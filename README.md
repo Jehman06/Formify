@@ -16,6 +16,3 @@
 2. Create a new form using the New Form button. This will generate a token for your form, to separate the different projects you may have.
 3. Copy the API endpoint and and place it in the action attribute of your form. Make sure to use `method='POST'`. Each input in your form should have a `name` attribute.
 4. Integrate with your usecase!
-
-Here is a short video to get started:
-https://www.loom.com/share/c84b0894a9464790abd3a9abaa3a6ef4?sid=52a8c721-0ffc-41c2-b7d3-ad6204e33697
