@@ -16,3 +16,6 @@
 2. Create a new form using the New Form button. This will generate a token for your form, to separate the different projects you may have.
 3. Copy the API endpoint and and place it in the action attribute of your form. Make sure to use `method='POST'`. Each input in your form should have a `name` attribute.
 4. Integrate with your usecase!
+
+Example of a simple form using Formify:
+![Example](https://i.imgur.com/I8nZNnn.jpg "Example of a simple form using Formify API")
